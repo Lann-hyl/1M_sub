@@ -1,6 +1,8 @@
 extends Node
 
 var current_scene: Node = null
+var current_event: EventBase = null
+var current_event_path: String = ""
 
 func _ready() -> void:
 	var root: Node = get_tree().root
@@ -33,7 +35,6 @@ func _deferred_goto_scene(path: String) -> void:
 
 	# Add it to the active scene, as child of root.
 	get_tree().root.add_child(current_scene)
-
 	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
 	get_tree().current_scene = current_scene
 	
@@ -57,7 +58,9 @@ func goto_scene_map(event: EventBase, selection: int) -> void:
 	var event_type_name: String = actual_event.get_event_name()
 	# go search the scene of the given event with the given selection
 	var path: String = "res://#Scenes/Events/%s/%d.tscn" % [event_type_name, selection] 
-
+	
+	current_event_path = path
+	current_event = actual_event
 	call_deferred("_deferred_goto_scene_map", actual_event, path)
 	
 ## Load the scene and start the event	
@@ -75,3 +78,37 @@ func on_defeat() -> void:
 ## Give rewards, allow player to move on the map
 func on_event_win() -> void:
 	PlayerManager.player_room.room_event.on_event_ended()
+
+func save_scene_data() -> void:
+	var packed_scene: PackedScene = PackedScene.new()
+	packed_scene.pack(current_scene)
+	ResourceSaver.save(packed_scene, "user://save/current_scene.tscn")
+	
+	var save_file: ConfigFile = SaveManager.save_file
+	save_file.set_value("SceneManager", "current_event", current_event)
+	
+	var error: Error = save_file.save("user://save/save_data.ini")
+	if error:
+		push_error("Error saving player data: ", error)
+
+func load_scene_data() -> void:
+	call_deferred("_deferred_load_current_scene_from_data")
+
+func _deferred_load_current_scene_from_data() -> void:
+	var save_file: ConfigFile = SaveManager.load_save_file()
+	if save_file == null:
+		push_error("Attempting to load a scene with no save file. How did you get here???")
+	
+	if save_file.has_section_key("SceneManager", "current_event"):
+		current_event = save_file.get_value("SceneManager", "current_event")
+	
+	current_scene.free()
+	
+	var scene: Resource = ResourceLoader.load("user://save/current_scene.tscn")
+	current_scene = scene.instantiate()
+	get_tree().root.add_child(current_scene)
+	# Optionally, to make it compatible with the SceneTree.change_scene_to_file() API.
+	get_tree().current_scene = current_scene
+	current_event.on_event_started()
+
+

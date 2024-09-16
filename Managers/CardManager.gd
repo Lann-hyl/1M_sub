@@ -44,3 +44,22 @@ func is_discard_hand_signal_connected(callable: Callable) -> bool:
 func connect_discard_hand_signal(callable: Callable) -> void:
 	card_container.on_finished_discarding_hand.connect(callable)
 
+func save_data() -> void:
+	var save_file: ConfigFile = SaveManager.save_file
+	save_file.set_value("CardManager", "current_deck", current_deck)
+	
+	var error: Error = save_file.save("user://save/save_data.ini")
+	if error:
+		push_error("Error saving player data: ", error)
+
+func load_data() -> void:
+	var save_file: ConfigFile = SaveManager.load_save_file()
+	if save_file == null:
+		return
+	
+	if save_file.has_section_key("CardManager", "current_deck"):
+		current_deck = save_file.get_value("CardManager", "current_deck")
+
+func init_data() -> void:
+	current_deck = default_deck.card_set.duplicate()
+

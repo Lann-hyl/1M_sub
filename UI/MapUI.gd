@@ -25,6 +25,7 @@ var _LIGHT_FLOOR_RANGE: int = 3
 @export var torch_confirmation_dialog: ConfirmationDialog
 @export var cant_set_torch_dialog: AcceptDialog
 @export var player_position_not_set_text: String
+@export var not_enough_torches_text: String
 
 var room_ui_array: Array[Array]
 var current_player_room: RoomUI
@@ -44,6 +45,9 @@ func _on_add_torch_pressed() -> void:
 		cant_set_torch_dialog.dialog_text = player_position_not_set_text
 		cant_set_torch_dialog.show()
 	#TODO: Add in torch count here
+	elif !InventoryManager.has_torches():
+		cant_set_torch_dialog.dialog_text = not_enough_torches_text
+		cant_set_torch_dialog.show()
 	else:
 		torch_confirmation_dialog.show()
 
@@ -56,30 +60,40 @@ func _add_torch_to_current_location() -> void:
 	var accessible_room_positions: Array[RoomBase] = MapMovement.get_all_accessible_rooms_in_range(PlayerManager.player_position, _LIGHT_FLOOR_RANGE, MapManager.current_map.rooms)
 	for room: RoomBase in accessible_room_positions:
 		room.light_data.increase_light_by_torch()
+	
 	current_player_room.room.set_torch_active()
+	
+	InventoryManager.subtract_torch()
+	
 	light_overlay.queue_redraw()
+	SaveManager.execute_save()
 
 func _ready() -> void:
 	# allows map to be closed if any of the room button on the map is pressed
 	SignalBus.clicked_next_room_on_map.connect(_on_room_clicked)
-	
 	var current_map: MapBase = MapManager.current_map
+	_draw_map_ui(current_map.rooms)
 	
+	if(!PlayerManager.is_player_initial_position_set):
+		scroll_container.scroll_to_bottom(0)
+	else:
+		scroll_container.scroll_to_fauna(0)
+
+func _draw_map_ui(rooms: Array[Array]) -> void:
 	var accessible_rooms_by_player: Array[RoomBase] = []
 	# Godot not happy and telling me current_map.rooms is an Array and not an Array[RoomBase]
 	# because we can't have nested typing in array, so need to use assign for type conversion
 	accessible_rooms_by_player = []
-	if PlayerManager.is_map_movement_allowed:
-		if PlayerManager.is_player_initial_position_set:
-			accessible_rooms_by_player = MapMovement.get_accessible_rooms_by_player()
-		else:
-			# If the player hasn't selected a room yet, take the currently accessible rooms 
-			# (basically the rooms on the first floor) and increase the light on those rooms.
-			accessible_rooms_by_player.assign(current_map.rooms[0])
-			for room: RoomBase in current_map.rooms[0]:
-				if room != null:
-					room.light_data.increase_light_by_player_movement()
-	
+	#if PlayerManager.is_map_movement_allowed:
+	if PlayerManager.is_player_initial_position_set:
+		accessible_rooms_by_player = MapMovement.get_accessible_rooms_by_player()
+	else:
+		# If the player hasn't selected a room yet, take the currently accessible rooms 
+		# (basically the rooms on the first floor) and increase the light on those rooms.
+		accessible_rooms_by_player.assign(rooms[0])
+		for room: RoomBase in rooms[0]:
+			if room != null:
+				room.light_data.increase_light_by_player_movement()
 	# Create New Room Object to append to the room container
 	var new_room: Control = room_ui.instantiate()
 	var new_room_texture_button: TextureButton = Helpers.get_first_child_node_of_type(new_room, TextureButton)
@@ -115,7 +129,7 @@ func _ready() -> void:
 	var start_position_for_next_room_y: float = room_container.position.y + room_container.get_custom_minimum_size().y - new_room_size.y - _padding_offset
 	var position_for_next_room: Vector2 = Vector2(start_position_for_next_room_x, start_position_for_next_room_y)
 	
-	room_ui_array.resize(MapManager.map_width_array.size())
+	room_ui_array.resize(rooms.size())
 	
 	# Get the offset if we had to adjust the X position due to having to set a minimum width if the map is too small.
 	var offset_x: float = room_container.get_custom_minimum_size().x / 2 - _get_combined_room_width(new_room_texture_button) / 2
@@ -127,8 +141,8 @@ func _ready() -> void:
 	if (get_combined_room_height(new_room_texture_button) < _MINIMUM_ROOM_HEIGHT):
 		offset_y = room_container.get_custom_minimum_size().y / 2 - get_combined_room_height(new_room_texture_button) / 2
 	
-	for floor_index: int in range(current_map.rooms.size()):
-		var floor_array: Array = current_map.rooms[floor_index]
+	for floor_index: int in range(rooms.size()):
+		var floor_array: Array = rooms[floor_index]
 		# When we're done populating a floor and we go to the next index, reset the X start position
 		position_for_next_room.x = start_position_for_next_room_x
 		for room: RoomBase in floor_array:
@@ -136,7 +150,7 @@ func _ready() -> void:
 				var room_display: Control = room_ui.instantiate()
 				var texture_button: TextureButton = Helpers.get_first_child_node_of_type(room_display, TextureButton)
 				# disable the button if the player can't access the room
-				texture_button.disabled = not (DebugVar.DEBUG_FREE_MOVEMENT or accessible_rooms_by_player.has(room))
+				texture_button.disabled = not (DebugVar.DEBUG_FREE_MOVEMENT or (accessible_rooms_by_player.has(room) and PlayerManager.is_map_movement_allowed))
 				room_display.room = room
 				# Show the player on map by checking the room he is in
 				if (PlayerManager.is_player_in_room(room)):
@@ -165,11 +179,6 @@ func _ready() -> void:
 	
 	light_overlay = LightOverlay.new(room_container, room_ui_array)
 	room_container.add_child(light_overlay)
-	
-	if(!PlayerManager.is_player_initial_position_set):
-		scroll_container.scroll_to_bottom(0)
-	else:
-		scroll_container.scroll_to_fauna(0)
 
 # Get the width of room nodes, by getting the size of what a room is w/ some offset
 # multiplying that by the max number in the map_width_array to get the width of the largest floor then add offset 

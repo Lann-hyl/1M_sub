@@ -31,12 +31,46 @@ func toggle_inventory_HUD() -> void:
 	else:
 		close_inventory_HUD()
 
+func has_torches() -> bool:
+	return torch_component.has_torches()
+
+func subtract_torch() -> void:
+	torch_component.lose_torches(1)
+
 ## Simply just makes new versions of every component class to reset all the items [br]
 ## The inventory_hud is closed before hand in case something breaks there
 
-func reset_inventory() -> void:
+func init_data() -> void:
 	close_inventory_HUD()
 	gold_component = InventoryGoldComponent.new()
 	torch_component = InventoryTorchComponent.new()
 	consumable_component = InventoryConsumablesComponent.new()
 	relic_component = InventoryRelicComponent.new()
+
+func save_inventory() -> void:
+	var save_file: ConfigFile = SaveManager.save_file
+	save_file.set_value("InventoryManager", "gold_component", gold_component)
+	save_file.set_value("InventoryManager", "torch_component", torch_component)
+	save_file.set_value("InventoryManager", "consumable_component", consumable_component)
+	save_file.set_value("InventoryManager", "relic_component", relic_component)
+	
+	var error: Error = save_file.save("user://save/save_data.ini")
+	if error:
+		push_error("Error saving inventory data: ", error)
+
+func load_inventory() -> void:
+	var save_file: ConfigFile = SaveManager.load_save_file()
+	if save_file == null:
+		return
+	
+	if save_file.has_section_key("InventoryManager", "gold_component"):
+		gold_component = save_file.get_value("InventoryManager", "gold_component")
+	
+	if save_file.has_section_key("InventoryManager", "torch_component"):
+		torch_component = save_file.get_value("InventoryManager", "torch_component")
+	
+	if save_file.has_section_key("InventoryManager", "consumable_component"):
+		consumable_component = save_file.get_value("InventoryManager", "consumable_component")
+	
+	if save_file.has_section_key("InventoryManager", "relic_component"):
+		relic_component = save_file.get_value("InventoryManager", "relic_component")

@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://UI/HealthLabel.gd" id="7_1hqya"]
 [ext_resource type="Script" path="res://Entity/Components/PartyComponent.gd" id="8_mmgs7"]
 [ext_resource type="Script" path="res://Entity/Components/EnergyComponent.gd" id="9_5kwft"]
-[ext_resource type="PackedScene" uid="uid://dbidy5j4uyopc" path="res://Entity/Components/block_display.tscn" id="10_cogpc"]
+[ext_resource type="PackedScene" path="res://Entity/Components/block_display.tscn" id="10_cogpc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b8bva"]
 size = Vector2(104, 93)

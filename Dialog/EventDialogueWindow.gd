@@ -89,6 +89,7 @@ var dialogue_line: DialogueLine:
 
 
 func _ready() -> void:
+	SaveManager.execute_save()
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 

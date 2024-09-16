@@ -15,7 +15,8 @@ var player: Player
 var player_position: Vector2i = Vector2i(-1,-1):
 	set(position):
 		player_position = position
-		is_player_initial_position_set = true
+		if player_position != Vector2i(-1, -1):
+			is_player_initial_position_set = true
 	get:
 		return player_position
 
@@ -25,7 +26,7 @@ var is_player_initial_position_set: bool
 ## The actual room the player is in. [br]
 var player_room: RoomBase = null:
 	get:
-		if player_position.x == -1 or player_position.y == -1:
+		if player_position == Vector2i(-1, -1):
 			return null
 		return MapManager.current_map.rooms[player_position.y][player_position.x]
 
@@ -43,8 +44,30 @@ func _ready() -> void:
 	player = null
 	is_player_initial_position_set = false
 
+func save_player() -> void:
+	var save_file: ConfigFile = SaveManager.save_file
+	
+	save_file.set_value("Player", "position", player_position)
+	save_file.set_value("Player", "player_room", player_room)
+	save_file.set_value("Player", "player_persistent_data", player_persistent_data)
+	
+	var error: Error = save_file.save("user://save/save_data.ini")
+	if error:
+		push_error("Error saving player data: ", error)
 
-
+func load_player() -> void:
+	var save_file: ConfigFile = SaveManager.load_save_file()
+	if save_file == null:
+		return
+	
+	if save_file.has_section_key("Player", "position"):
+		player_position = save_file.get_value("Player", "position")
+	
+	if save_file.has_section_key("Player", "player_room"):
+		player_room = save_file.get_value("Player", "player_room")
+	
+	if save_file.has_section_key("Player", "player_persistent_data"):
+		player_persistent_data = save_file.get_value("Player", "player_persistent_data") as PlayerPersistentData
 
 func set_player(in_player: Player) -> void:
 	player = in_player
@@ -54,7 +77,13 @@ func set_player(in_player: Player) -> void:
 
 func create_persistent_data() -> void:
 	player_persistent_data = PlayerPersistentData.new()
-	
+
+func init_data() -> void:
+	player = null
+	is_player_initial_position_set = false
+	player_position = Vector2i(-1,-1)
+	player_room = null
+	is_map_movement_allowed = true
 
 ## Checks if the player is in a given room
 func is_player_in_room(room: RoomBase) -> bool:

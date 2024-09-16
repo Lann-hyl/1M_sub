@@ -66,4 +66,21 @@ func increase(amount: int = 1) -> void:
 		xp_changed.emit(current_xp, previous_xp_level, next_xp_level, true)
 	else:
 		xp_changed.emit(current_xp, previous_xp_level, next_xp_level, false)
+
+func save_data() -> void:
+	var save_file: ConfigFile = SaveManager.save_file
+	save_file.set_value("XPManager", "current_xp", current_xp)
 	
+	var error: Error = save_file.save("user://save/save_data.ini")
+	if error:
+		print("Error saving player data: ", error)
+
+func load_data() -> void:
+	var save_file: ConfigFile = SaveManager.load_save_file()
+	if save_file == null:
+		return
+	
+	current_xp = save_file.get_value("XPManager", "current_xp", 0)
+
+func init_data() -> void:
+	current_xp = 0

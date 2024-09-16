@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bfy3htfthvnvb" path="res://Art/Menus/Button_normal/quit-0.png" id="11_g0haw"]
 [ext_resource type="Texture2D" uid="uid://cxnt3pjokwbjy" path="res://Art/Menus/Button_focused/quit-1.png" id="12_eqc6b"]
 
-[node name="Main menu" type="Control"]
+[node name="Main menu" type="Control" node_paths=PackedStringArray("start_new_game_dialog")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +21,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mwp8y")
+start_new_game_dialog = NodePath("StartNewGameDialog")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2
@@ -62,7 +63,6 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Quit")
 focus_neighbor_bottom = NodePath("../New game")
-disabled = true
 texture_normal = ExtResource("3_76twh")
 texture_hover = ExtResource("4_d6gd7")
 texture_focused = ExtResource("4_d6gd7")
@@ -114,6 +114,17 @@ texture_focused = ExtResource("12_eqc6b")
 ignore_texture_size = true
 stretch_mode = 4
 
+[node name="StartNewGameDialog" type="ConfirmationDialog" parent="."]
+title = ""
+initial_position = 4
+size = Vector2i(300, 106)
+ok_button_text = "Yes"
+dialog_text = "You have a game in progress. Are you sure you want to start a new game?"
+dialog_autowrap = true
+cancel_button_text = "No"
+
+[connection signal="pressed" from="Menu buttons/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Menu buttons/New game" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Menu buttons/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Menu buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="confirmed" from="StartNewGameDialog" to="." method="_on_start_new_game_dialog_confirmed"]

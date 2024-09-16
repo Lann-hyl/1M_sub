@@ -1,7 +1,7 @@
 class_name InventoryTorchComponent
 ## Inventory component responsible for torches
  
-var _torch_amount : int = 0
+var _torch_amount : int = 3
 signal torches_changed(new_amount : int)
 
 func add_torches(amount : int) -> void:

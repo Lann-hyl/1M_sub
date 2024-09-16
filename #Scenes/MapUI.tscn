@@ -20,6 +20,7 @@ room_container = NodePath("SmoothScrollContainer/RoomContainer")
 torch_confirmation_dialog = NodePath("TorchPlacementConfirmationDialog2")
 cant_set_torch_dialog = NodePath("CantSetTorchDialog")
 player_position_not_set_text = "Fauna doko? Set Fauna in a room before placing a torch."
+not_enough_torches_text = "You're out of torches!"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

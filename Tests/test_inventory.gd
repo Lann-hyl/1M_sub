@@ -1,7 +1,7 @@
 extends GutTest
 
 func before_each() -> void:
-	InventoryManager.reset_inventory()
+	InventoryManager.init_data()
 
 func test_add_gold() -> void:
 	InventoryManager.gold_component.add_gold(10)
@@ -15,11 +15,11 @@ func test_lose_gold() -> void:
 func test_lose_torch() -> void:
 	InventoryManager.torch_component.add_torches(10)
 	InventoryManager.torch_component.lose_torches(5)
-	assert_eq(InventoryManager.torch_component.get_torch_amount(), 5)
+	assert_eq(InventoryManager.torch_component.get_torch_amount(), 8)
 
 func test_add_torch() -> void:
 	InventoryManager.torch_component.add_torches(10)
-	assert_eq(InventoryManager.torch_component.get_torch_amount(), 10)
+	assert_eq(InventoryManager.torch_component.get_torch_amount(), 13)
 
 func test_add_relic() -> void:
 	var test_relic : Relic = load("res://Items/test_relic.tres")

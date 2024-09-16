@@ -20,6 +20,7 @@ config/icon="res://Art/Menus/fauna_icon-1.png"
 
 [autoload]
 
+SaveManager="*res://Managers/SaveManager.gd"
 SceneManager="*res://Managers/SceneManager.gd"
 SignalBus="*res://Global/SignalBus.gd"
 DebugVar="*res://Global/DEBUG_VAR.gd"
