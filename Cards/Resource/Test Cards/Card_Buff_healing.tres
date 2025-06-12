@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=14 format=3 uid="uid://c787doijq7xg2"]
+
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="1_5r5yp"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_0ql41"]
+[ext_resource type="Script" path="res://Status/Buffs/Buff_Healing.gd" id="2_sgtkt"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetPlayer.gd" id="3_60dhg"]
+[ext_resource type="Script" path="res://Entity/Components/Stats/StatModifiers.gd" id="3_gp26q"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="4_wyd1i"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="5_wu6tg"]
+
+[sub_resource type="Resource" id="Resource_renle"]
+script = ExtResource("3_gp26q")
+permanent_add = 0
+permanent_multiply = 1.0
+temporary_add = 1
+temporary_multiply = 1.0
+
+[sub_resource type="Resource" id="Resource_8rxnt"]
+script = ExtResource("2_sgtkt")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 1.0
+status_modifier_base_value = SubResource("Resource_renle")
+
+[sub_resource type="Resource" id="Resource_w5qm2"]
+script = ExtResource("1_5r5yp")
+status_to_apply = SubResource("Resource_8rxnt")
+
+[sub_resource type="Resource" id="Resource_je5tl"]
+script = ExtResource("3_60dhg")
+
+[sub_resource type="Resource" id="Resource_0xps1"]
+script = ExtResource("2_0ql41")
+effect = SubResource("Resource_w5qm2")
+value = 1
+targeting_function = SubResource("Resource_je5tl")
+
+[sub_resource type="Resource" id="Resource_308lg"]
+script = ExtResource("4_wyd1i")
+energy_cost = 0
+
+[resource]
+script = ExtResource("5_wu6tg")
+application_type = 0
+card_title = "Buff heal"
+card_type = 0
+card_description = "Buffs healing by 1 for 3 turns"
+card_artist_name = "NULL"
+card_effects_data = Array[ExtResource("2_0ql41")]([SubResource("Resource_0xps1")])
+energy_info = SubResource("Resource_308lg")

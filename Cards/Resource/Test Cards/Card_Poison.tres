@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=17 format=3 uid="uid://ctx8jsvac84so"]
+
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="1_5lji7"]
+[ext_resource type="PackedScene" uid="uid://c13302ahcfpuy" path="res://Cards/Animation/Scene/Anim_Poison.tscn" id="1_q5mb6"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_u6k7h"]
+[ext_resource type="Script" path="res://Status/Debuffs/Debuff_Poison.gd" id="2_6vdl1"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_omhae"]
+[ext_resource type="Script" path="res://Cards/Animation/CastPosition/CastPos_AllTargets.gd" id="2_rxe7g"]
+[ext_resource type="Script" path="res://Cards/Animation/CastAnimationData.gd" id="3_ph4nu"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetingBase.gd" id="4_2c1xc"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="4_ux0cs"]
+
+[sub_resource type="Resource" id="Resource_mt7py"]
+script = ExtResource("2_rxe7g")
+offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_s0nfu"]
+script = ExtResource("3_ph4nu")
+cast_animation_scene = ExtResource("1_q5mb6")
+cast_position = SubResource("Resource_mt7py")
+
+[sub_resource type="Resource" id="Resource_lnhao"]
+script = ExtResource("2_6vdl1")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 1.0
+
+[sub_resource type="Resource" id="Resource_p8qns"]
+script = ExtResource("1_5lji7")
+status_to_apply = SubResource("Resource_lnhao")
+
+[sub_resource type="Resource" id="Resource_oq1u4"]
+script = ExtResource("4_2c1xc")
+
+[sub_resource type="Resource" id="Resource_bamld"]
+script = ExtResource("2_omhae")
+effect = SubResource("Resource_p8qns")
+value = 0
+targeting_function = SubResource("Resource_oq1u4")
+animation_data = SubResource("Resource_s0nfu")
+
+[sub_resource type="Resource" id="Resource_1hn6q"]
+script = ExtResource("4_ux0cs")
+energy_cost = 2
+
+[resource]
+script = ExtResource("1_u6k7h")
+application_type = 1
+card_title = "Poison"
+card_type = 0
+card_description = "Apply 3 poison"
+card_artist_name = "NULL"
+card_effects_data = Array[ExtResource("2_omhae")]([SubResource("Resource_bamld")])
+energy_info = SubResource("Resource_1hn6q")

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://7hs1nfyh7mj4"]
+
+[ext_resource type="PackedScene" uid="uid://bpgsmfprnm2kk" path="res://Entity/Enemy/EnemyScene/Enemy.tscn" id="1_kje8b"]
+[ext_resource type="Texture2D" uid="uid://dvr6ky4vqv4lf" path="res://Art/Enemies/golden_cauldron-finished.png" id="2_nr485"]
+
+[node name="Enemy" instance=ExtResource("1_kje8b")]
+enemy_name = 10
+
+[node name="Sprite2D" parent="." index="3"]
+scale = Vector2(0.447793, 0.447793)
+texture = ExtResource("2_nr485")
+
+[node name="CollisionPolygon2D" parent="Area2D" index="0"]
+position = Vector2(25.479, -3.69674)
+scale = Vector2(1.40701, 0.94837)
+polygon = PackedVector2Array(-111.924, 282.27, 94.1861, 286.488, 188.713, 205.296, 97.029, 98.7977, 121.194, -47.7696, 83.5252, -311.38, -109.081, -310.326, -173.758, 88.2533)
+
+[node name="HealthLabel" parent="." index="6"]
+offset_top = -352.0
+offset_bottom = -313.0
+
+[node name="StressLabel" parent="." index="7"]
+offset_top = -411.0
+offset_bottom = -372.0

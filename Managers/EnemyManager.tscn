@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://3frrexqe4dng"]
+
+[ext_resource type="Script" path="res://Managers/EnemyManager.gd" id="1_3jnpp"]
+[ext_resource type="PackedScene" uid="uid://1uqpxix8wb18" path="res://Entity/Enemy/EnemyGroup/golden_cauldron_group.tscn" id="2_7seft"]
+[ext_resource type="PackedScene" uid="uid://cio8a6qvoj2k" path="res://Entity/Enemy/EnemyGroup/motorized_bears.tscn" id="3_t6wf7"]
+
+[node name="EnemyManager" type="Node2D"]
+script = ExtResource("1_3jnpp")
+enemy_group_distribution = {
+[1, 0, 20]: [ExtResource("2_7seft"), ExtResource("3_t6wf7")],
+[1, 20, 40]: [ExtResource("2_7seft")],
+[1, 40, 60]: [],
+[1, 60, 80]: [],
+[1, 80, 100]: [],
+[2, 0, 20]: [],
+[2, 20, 40]: [],
+[2, 40, 60]: [],
+[2, 60, 80]: [],
+[2, 80, 100]: [],
+[3, 0, 20]: [],
+[3, 20, 40]: [],
+[3, 40, 60]: [],
+[3, 60, 80]: [],
+[3, 80, 100]: []
+}

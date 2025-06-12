@@ -18,7 +18,7 @@ func _init() -> void:
 @warning_ignore("unused_parameter")
 func generate_target_list(targeted_entity: Entity) -> Array[Entity]:
 	var target_list: Array[Entity] = []
-	var enemy_list: Array[Entity] = EnemyManager.enemy_list.duplicate()
+	var enemy_list: Array[Entity] = EnemyManager.current_enemy_group.enemy_list.duplicate()
 	var enemy_list_size: int = enemy_list.size()
 	for _i: int in range(number_of_targets):
 		var random_index: int = randi_range(0,enemy_list_size-1)

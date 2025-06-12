@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=18 format=3 uid="uid://b15tsfgho08l3"]
+
+[ext_resource type="PackedScene" uid="uid://c13302ahcfpuy" path="res://Cards/Animation/Scene/Anim_Poison.tscn" id="1_1fnxh"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="1_5bpdn"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_8vdey"]
+[ext_resource type="Texture2D" uid="uid://c00sf3k3cqsuu" path="res://Art/Card_art/Pspspsps__HDAK_art.jpg" id="1_r55xq"]
+[ext_resource type="Script" path="res://Status/Debuffs/Debuff_Poison.gd" id="2_6rj0a"]
+[ext_resource type="Script" path="res://Cards/Animation/CastPosition/CastPos_AllTargets.gd" id="2_122d8"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="3_2ijdv"]
+[ext_resource type="Script" path="res://Cards/Animation/CastAnimationData.gd" id="3_qnpfb"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetAllEnemies.gd" id="4_fmnm5"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="6_4chf2"]
+
+[sub_resource type="Resource" id="Resource_nf4a8"]
+script = ExtResource("2_122d8")
+offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_fqat0"]
+script = ExtResource("3_qnpfb")
+cast_animation_scene = ExtResource("1_1fnxh")
+cast_position = SubResource("Resource_nf4a8")
+
+[sub_resource type="Resource" id="Resource_2wb5j"]
+script = ExtResource("2_6rj0a")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 2.0
+
+[sub_resource type="Resource" id="Resource_wxxvn"]
+script = ExtResource("1_5bpdn")
+status_to_apply = SubResource("Resource_2wb5j")
+
+[sub_resource type="Resource" id="Resource_3ibyk"]
+script = ExtResource("4_fmnm5")
+
+[sub_resource type="Resource" id="Resource_kiawg"]
+script = ExtResource("3_2ijdv")
+effect = SubResource("Resource_wxxvn")
+value = 0
+targeting_function = SubResource("Resource_3ibyk")
+animation_data = SubResource("Resource_fqat0")
+
+[sub_resource type="Resource" id="Resource_da1bu"]
+script = ExtResource("6_4chf2")
+energy_cost = 1
+
+[resource]
+script = ExtResource("1_8vdey")
+application_type = 1
+card_title = "pspspsps"
+card_key_art = ExtResource("1_r55xq")
+card_type = 1
+card_description = "Inflict Cursed to all enemies."
+card_artist_name = "HDAK Art"
+card_effects_data = Array[ExtResource("3_2ijdv")]([SubResource("Resource_kiawg")])
+energy_info = SubResource("Resource_da1bu")

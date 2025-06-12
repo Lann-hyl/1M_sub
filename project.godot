@@ -29,11 +29,13 @@ CardManager="*res://Managers/CardManager.gd"
 PhaseManager="*res://Managers/PhaseManager.gd"
 RandomGenerator="*res://Managers/RandomGenerator.gd"
 GlobalVar="*res://Global/GLOBAL_VAR.gd"
-EnemyManager="*res://Managers/EnemyManager.gd"
+EnemyManager="*res://Managers/EnemyManager.tscn"
 MapManager="*res://Managers/MapManager.gd"
 InventoryManager="*res://Managers/InventoryManager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 XpManager="*res://Managers/XpManager.gd"
+AudioManager="*res://Managers/AudioManager.gd"
+ShopManager="*res://Shop/ShopManager.tscn"
 
 [debug]
 

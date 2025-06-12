@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://tfeo4epmhse0"]
+
+[ext_resource type="Script" path="res://Shop/shop_item_torch.gd" id="1_u2x56"]
+[ext_resource type="Texture2D" uid="uid://nheutko3fha3" path="res://Art/Card_layout/card_border.png" id="2_h1g3t"]
+[ext_resource type="Script" path="res://Input/ClickHandler.gd" id="3_4xu5k"]
+
+[node name="ShopItemTorch" type="Control" node_paths=PackedStringArray("clickHandler", "startPosTransform", "priceLabel")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_u2x56")
+clickHandler = NodePath("ClickHandler")
+amount = 110
+startPosTransform = NodePath("StartPos")
+cost = 80
+priceLabel = NodePath("PriceLabel/Label")
+
+[node name="PriceLabel" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -80.0
+offset_top = 55.0
+offset_right = 74.0
+offset_bottom = 95.0
+
+[node name="Label" type="Label" parent="PriceLabel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 152.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "dfdsfds
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -79.0
+offset_top = -23.0
+offset_right = -12.0
+offset_bottom = 3.0
+scale = Vector2(2.32, 2.32)
+texture_normal = ExtResource("2_h1g3t")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ClickHandler" type="Node" parent="."]
+script = ExtResource("3_4xu5k")
+time_to_lock_hover = 0.3
+
+[node name="StartPos" type="Node2D" parent="."]
+position = Vector2(-95, -33)
+
+[connection signal="gui_input" from="TextureRect" to="ClickHandler" method="_on_gui_input_event"]
+[connection signal="mouse_entered" from="TextureRect" to="ClickHandler" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect" to="ClickHandler" method="_on_mouse_exited"]

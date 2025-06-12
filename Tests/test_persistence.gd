@@ -39,7 +39,7 @@ func test_persist_strength_status() -> void:
 	strength_status.status_modifier_base_value = stat_modifer
 	_player.get_status_component().add_status(strength_status, _player)
 	
-	var card_damage: CardBase = load("res://Cards/Resource/Card_Damage.tres")
+	var card_damage: CardBase = load("res://Cards/Resource/Test Cards/Card_Damage.tres")
 	card_damage.card_effects_data[0].value = 2
 	card_damage.on_card_play(_player, _enemy)
 	assert_eq(_enemy_health_component.current_health, 96)

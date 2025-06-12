@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4bsmddaua2ye"]
+
+[ext_resource type="Script" path="res://Shop/shop_item_consumable.gd" id="1_m5rmx"]
+[ext_resource type="Script" path="res://Input/ClickHandler.gd" id="3_h2ml3"]
+
+[node name="ShopItemConsumable" type="Control" node_paths=PackedStringArray("consumableImage", "clickHandler", "priceLabel")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_m5rmx")
+consumableImage = NodePath("TextureRect")
+clickHandler = NodePath("ClickHandler")
+cost = 5
+priceLabel = NodePath("PriceLabel/Label")
+
+[node name="PriceLabel" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -80.0
+offset_top = 55.0
+offset_right = 74.0
+offset_bottom = 95.0
+
+[node name="Label" type="Label" parent="PriceLabel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 152.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "dfdsfds
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -33.0
+offset_top = -23.0
+offset_right = -4.0
+offset_bottom = 6.0
+scale = Vector2(2.32, 2.32)
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ClickHandler" type="Node" parent="."]
+script = ExtResource("3_h2ml3")
+time_to_lock_hover = 0.3
+
+[connection signal="gui_input" from="TextureRect" to="ClickHandler" method="_on_gui_input_event"]
+[connection signal="mouse_entered" from="TextureRect" to="ClickHandler" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="TextureRect" to="ClickHandler" method="_on_mouse_exited"]

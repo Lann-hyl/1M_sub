@@ -12,14 +12,14 @@ func before_each() -> void:
 	_player_energy_component.MAX_ENERGY = 4
 
 func test_add_energy() -> void:
-	card = load("res://Cards/Resource/Card_Energy.tres") # adds 70 energy
+	card = load("res://Cards/Resource/Test Cards/Card_Energy.tres") # adds 70 energy
 	card.energy_info.energy_cost = 0
 	card.on_card_play(_player, _player)
 	assert_eq(_player_energy_component.energy, 70)
 
 func test_using_energy() -> void:
 	_player_energy_component.add_energy(10)
-	card = load("res://Cards/Resource/Card_Damage.tres")
+	card = load("res://Cards/Resource/Test Cards/Card_Damage.tres")
 	card.energy_info.energy_cost = 7
 
 	card.on_card_play(PlayerManager.player, _enemy)

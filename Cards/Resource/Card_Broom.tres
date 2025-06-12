@@ -1,0 +1,63 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=21 format=3 uid="uid://cmhwcuf1ef634"]
+
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_brg18"]
+[ext_resource type="PackedScene" uid="uid://eimptoraq7pn" path="res://Cards/Animation/Scene/Anim_FaunaSweep.tscn" id="1_x6ycw"]
+[ext_resource type="Script" path="res://Cards/Animation/CastPosition/CastPos_CentralPosition.gd" id="2_rsgpc"]
+[ext_resource type="Script" path="res://Cards/Animation/CastAnimationData.gd" id="3_hppty"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectDamage.gd" id="4_i1xi4"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="5_i8y3m"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetingBase.gd" id="6_eipkf"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectAddBlock.gd" id="7_u53qs"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetPlayer.gd" id="8_q81bm"]
+[ext_resource type="Texture2D" uid="uid://bk8x6lew3blic" path="res://Art/Card_art/Broom__Iyzeekiil.png" id="9_2xwy0"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="10_grkci"]
+
+[sub_resource type="Resource" id="Resource_yqpdg"]
+script = ExtResource("2_rsgpc")
+use_central_position = true
+offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_g5hiv"]
+script = ExtResource("3_hppty")
+cast_animation_scene = ExtResource("1_x6ycw")
+cast_position = SubResource("Resource_yqpdg")
+
+[sub_resource type="Resource" id="Resource_8ks3w"]
+script = ExtResource("4_i1xi4")
+
+[sub_resource type="Resource" id="Resource_0a44b"]
+script = ExtResource("6_eipkf")
+
+[sub_resource type="Resource" id="Resource_wyqna"]
+script = ExtResource("5_i8y3m")
+effect = SubResource("Resource_8ks3w")
+value = 2
+targeting_function = SubResource("Resource_0a44b")
+animation_data = SubResource("Resource_g5hiv")
+
+[sub_resource type="Resource" id="Resource_10muj"]
+script = ExtResource("7_u53qs")
+
+[sub_resource type="Resource" id="Resource_ktsyp"]
+script = ExtResource("8_q81bm")
+
+[sub_resource type="Resource" id="Resource_gnm4a"]
+script = ExtResource("5_i8y3m")
+effect = SubResource("Resource_10muj")
+value = 2
+targeting_function = SubResource("Resource_ktsyp")
+
+[sub_resource type="Resource" id="Resource_mf7in"]
+script = ExtResource("10_grkci")
+energy_cost = 2
+
+[resource]
+script = ExtResource("1_brg18")
+application_type = 2
+card_title = "Broom"
+card_key_art = ExtResource("9_2xwy0")
+card_type = 0
+card_description = "Deal 2 damage and gain 2 Defense."
+card_artist_name = "Iyzeekiil"
+card_effects_data = Array[ExtResource("5_i8y3m")]([SubResource("Resource_wyqna"), SubResource("Resource_gnm4a")])
+energy_info = SubResource("Resource_mf7in")

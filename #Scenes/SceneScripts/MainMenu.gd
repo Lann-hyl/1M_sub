@@ -6,6 +6,7 @@ var continue_button: TextureButton
 
 #on opening the main menu we grab the focus of the start button
 func _ready() -> void:
+	AudioManager.start_music(GlobalEnums.MusicTrack.MAIN_MENU)
 	$"Menu buttons/Continue".grab_focus()
 	$"game version".text = ProjectSettings.get_setting("application/config/version")
 	for child in get_node("Menu buttons").get_children():
@@ -22,23 +23,27 @@ func _on_start_pressed() -> void:
 	if SaveManager.has_saved_data():
 		start_new_game_dialog.show()
 	else:
+		AudioManager.stop_music()
 		_init_managers()
 		SceneManager.goto_scene("res://#Scenes/MapUI.tscn")
 
 func _on_continue_pressed() -> void:
 	if SaveManager.has_saved_data():
+		AudioManager.stop_music()
 		PlayerManager.load_player()
 		MapManager.load_map_data()
 		XpManager.load_data()
 		CardManager.load_data()
 		InventoryManager.load_inventory()
 		SceneManager.load_scene_data()
+		EnemyManager.load_data()
 
 func _on_button_hovered(button: TextureButton) -> void:
 	button.grab_focus()
 
 ## Scene to be loaded when option button is pressed
 func _on_options_pressed() -> void:
+	AudioManager.play_sfx(GlobalEnums.SoundEffect.UUUUU)
 	SceneManager.goto_scene("res://#Scenes/OptionsMenu.tscn")
 
 
@@ -47,8 +52,13 @@ func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 
+## Go to the credits
+func _on_credits_pressed() -> void:
+	SceneManager.goto_scene("res://#Scenes/credits.tscn")
+
 func _on_start_new_game_dialog_confirmed() -> void:
 	SaveManager.clear_data()
+	AudioManager.stop_music()
 	_init_managers()
 	SceneManager.goto_scene("res://#Scenes/MapUI.tscn")
 

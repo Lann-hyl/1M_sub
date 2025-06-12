@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://dfgne15xrjxj5"]
+
+[ext_resource type="Script" path="res://Entity/Player/Player.gd" id="1_hhmvh"]
+[ext_resource type="Script" path="res://Entity/Components/StatComponent.gd" id="2_4y02h"]
+[ext_resource type="Script" path="res://Entity/Components/StatusComponent.gd" id="3_2wp1t"]
+[ext_resource type="Script" path="res://Entity/Components/HealthComponent.gd" id="4_kof7q"]
+[ext_resource type="Script" path="res://Entity/Components/PartyComponent.gd" id="8_4i7ll"]
+
+[node name="Player_no_display" type="Node2D"]
+script = ExtResource("1_hhmvh")
+
+[node name="StatComponent" type="Node" parent="."]
+script = ExtResource("2_4y02h")
+
+[node name="StatusComponent" type="Node" parent="."]
+script = ExtResource("3_2wp1t")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_kof7q")
+
+[node name="PartyComponent" type="Node" parent="."]
+script = ExtResource("8_4i7ll")
+team = 1

@@ -1,18 +1,38 @@
-[gd_scene load_steps=8 format=3 uid="uid://caxbd2ppk3ans"]
+[gd_scene load_steps=14 format=3 uid="uid://caxbd2ppk3ans"]
 
 [ext_resource type="Script" path="res://Cards/CardWorld.gd" id="1_4el5m"]
-[ext_resource type="Texture2D" uid="uid://nheutko3fha3" path="res://Art/Card_layout/card_border.png" id="2_k6rq5"]
 [ext_resource type="Script" path="res://Input/ClickHandler.gd" id="3_du4nn"]
+[ext_resource type="Texture2D" uid="uid://bp8i226lbqwmc" path="res://Art/Card_art/no_card_art.png" id="4_v52q6"]
 [ext_resource type="Script" path="res://UI/CardUISetter.gd" id="5_hkyxd"]
-[ext_resource type="Texture2D" uid="uid://bdc5r0w6lyh34" path="res://Art/Card_art/default_art.png" id="6_p357x"]
+[ext_resource type="Texture2D" uid="uid://bibs3cixt54ob" path="res://Art/Card_layout/card_skill_border.png" id="5_j7fcj"]
+[ext_resource type="Texture2D" uid="uid://d22aduyb416x4" path="res://Art/Card_layout/card_attack_border.png" id="5_nas3u"]
 [ext_resource type="Script" path="res://Cards/CardMovementComponent.gd" id="6_qvt2l"]
+[ext_resource type="Texture2D" uid="uid://ctuwyu04bxqjc" path="res://Art/Card_layout/card_power_border.png" id="7_l4ic7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ooxvf"]
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_sfsg0"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4g8pf"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_87106"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_satev"]
+font_color = Color(0, 0, 0, 1)
+
 [node name="Card" type="Control"]
+custom_minimum_size = Vector2(350, 470)
 layout_mode = 3
 anchors_preset = 0
+offset_left = -84.0
+offset_top = -141.0
+offset_right = 266.0
+offset_bottom = 329.0
 script = ExtResource("1_4el5m")
 
 [node name="ClickHandler" type="Node" parent="."]
@@ -22,79 +42,262 @@ time_to_lock_hover = 0.3
 [node name="CardMovementComponent" type="Node" parent="."]
 script = ExtResource("6_qvt2l")
 
-[node name="CardUI" type="Control" parent="." node_paths=PackedStringArray("title_label", "description_label", "energy_label", "key_art")]
+[node name="KeyArt" type="TextureRect" parent="."]
+texture_filter = 4
+layout_mode = 2
+offset_left = 59.0
+offset_top = 110.0
+offset_right = 289.0
+offset_bottom = 258.0
+mouse_filter = 2
+texture = ExtResource("4_v52q6")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="CardUI" type="Control" parent="." node_paths=PackedStringArray("key_art", "attack_ui", "skill_ui", "power_ui")]
+anchors_preset = 0
+offset_left = 174.0
+offset_top = 298.0
+offset_right = 214.0
+offset_bottom = 338.0
+script = ExtResource("5_hkyxd")
+key_art = NodePath("../KeyArt")
+attack_ui = NodePath("AttackUI")
+skill_ui = NodePath("SkillUI")
+power_ui = NodePath("PowerUI")
+
+[node name="AttackUI" type="Control" parent="CardUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -94.0
-offset_top = -134.0
-offset_right = 94.0
-offset_bottom = 134.0
+offset_left = -168.0
+offset_top = -279.0
+offset_right = 122.0
+offset_bottom = 121.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("5_hkyxd")
-title_label = NodePath("VerticalLayout/Title")
-description_label = NodePath("VerticalLayout/Description")
-energy_label = NodePath("Energy")
-key_art = NodePath("VerticalLayout/KeyArt")
 
-[node name="SelectionButton" type="TextureButton" parent="CardUI"]
+[node name="SelectionButton" type="TextureButton" parent="CardUI/AttackUI"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("2_k6rq5")
-texture_pressed = ExtResource("2_k6rq5")
-texture_hover = ExtResource("2_k6rq5")
-texture_disabled = ExtResource("2_k6rq5")
-texture_focused = ExtResource("2_k6rq5")
+texture_normal = ExtResource("5_nas3u")
+texture_pressed = ExtResource("5_nas3u")
+texture_hover = ExtResource("5_nas3u")
+texture_disabled = ExtResource("5_nas3u")
+texture_focused = ExtResource("5_nas3u")
+ignore_texture_size = true
+stretch_mode = 3
 
-[node name="VerticalLayout" type="VBoxContainer" parent="CardUI"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Title" type="Label" parent="CardUI/VerticalLayout"]
+[node name="Title" type="Label" parent="CardUI/AttackUI"]
 custom_minimum_size = Vector2(188, 23)
 layout_mode = 2
+offset_left = 52.0
+offset_top = 48.0
+offset_right = 240.0
+offset_bottom = 71.0
 text = "Card Title"
 label_settings = SubResource("LabelSettings_ooxvf")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="KeyArt" type="TextureRect" parent="CardUI/VerticalLayout"]
+[node name="Description" type="Label" parent="CardUI/AttackUI"]
+custom_minimum_size = Vector2(188, 100)
+layout_direction = 1
 layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("6_p357x")
-stretch_mode = 3
-
-[node name="Description" type="Label" parent="CardUI/VerticalLayout"]
-custom_minimum_size = Vector2(188, 127)
-layout_mode = 2
-text = "This is a test description for a card. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam"
+offset_left = 53.0
+offset_top = 234.1
+offset_right = 241.0
+offset_bottom = 334.1
+text = "This is a test description for a card."
 label_settings = SubResource("LabelSettings_ooxvf")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Energy" type="Label" parent="CardUI"]
+[node name="Energy" type="Label" parent="CardUI/AttackUI"]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 27.0
-offset_right = 44.0
-offset_bottom = 50.0
+offset_left = 49.0
+offset_top = 216.0
+offset_right = 89.0
+offset_bottom = 239.0
+text = "E:0"
+label_settings = SubResource("LabelSettings_sfsg0")
 
-[connection signal="gui_input" from="CardUI/SelectionButton" to="ClickHandler" method="_on_gui_input_event"]
-[connection signal="mouse_entered" from="CardUI/SelectionButton" to="ClickHandler" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CardUI/SelectionButton" to="ClickHandler" method="_on_mouse_exited"]
+[node name="Artist" type="Label" parent="CardUI/AttackUI"]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 354.0
+offset_right = 108.0
+offset_bottom = 371.0
+text = "Author"
+label_settings = SubResource("LabelSettings_4g8pf")
+
+[node name="SkillUI" type="Control" parent="CardUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -157.0
+offset_top = -275.0
+offset_right = 133.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SelectionButton" type="TextureButton" parent="CardUI/SkillUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_j7fcj")
+texture_pressed = ExtResource("5_j7fcj")
+texture_hover = ExtResource("5_j7fcj")
+texture_disabled = ExtResource("5_j7fcj")
+texture_focused = ExtResource("5_j7fcj")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Title" type="Label" parent="CardUI/SkillUI"]
+custom_minimum_size = Vector2(188, 23)
+layout_mode = 2
+offset_left = 56.0
+offset_top = 44.0
+offset_right = 244.0
+offset_bottom = 67.0
+text = "Card Title"
+label_settings = SubResource("LabelSettings_ooxvf")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="CardUI/SkillUI"]
+custom_minimum_size = Vector2(188, 100)
+layout_direction = 1
+layout_mode = 2
+offset_left = 46.0
+offset_top = 229.0
+offset_right = 234.0
+offset_bottom = 330.0
+text = "This is a test description for a card. Lorem ipsum dolor sit amet"
+label_settings = SubResource("LabelSettings_ooxvf")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Energy" type="Label" parent="CardUI/SkillUI"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 212.0
+offset_right = 74.0
+offset_bottom = 235.0
+label_settings = SubResource("LabelSettings_87106")
+
+[node name="Artist" type="Label" parent="CardUI/SkillUI"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 347.0
+offset_right = 103.0
+offset_bottom = 364.0
+text = "Author"
+label_settings = SubResource("LabelSettings_4g8pf")
+
+[node name="PowerUI" type="Control" parent="CardUI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -270.0
+offset_right = 125.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SelectionButton" type="TextureButton" parent="CardUI/PowerUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_l4ic7")
+texture_pressed = ExtResource("7_l4ic7")
+texture_hover = ExtResource("7_l4ic7")
+texture_disabled = ExtResource("7_l4ic7")
+texture_focused = ExtResource("7_l4ic7")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Title" type="Label" parent="CardUI/PowerUI"]
+custom_minimum_size = Vector2(188, 23)
+layout_mode = 2
+offset_left = 64.0
+offset_top = 44.0
+offset_right = 252.0
+offset_bottom = 67.0
+text = "Card Title"
+label_settings = SubResource("LabelSettings_ooxvf")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Description" type="Label" parent="CardUI/PowerUI"]
+custom_minimum_size = Vector2(188, 100)
+layout_direction = 1
+layout_mode = 2
+offset_left = 51.0
+offset_top = 228.0
+offset_right = 239.0
+offset_bottom = 329.0
+text = "This is a test description for a card. Lorem ipsum dolor sit amet"
+label_settings = SubResource("LabelSettings_ooxvf")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Energy" type="Label" parent="CardUI/PowerUI"]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 40.0
+offset_right = 105.0
+offset_bottom = 63.0
+label_settings = SubResource("LabelSettings_satev")
+
+[node name="Artist" type="Label" parent="CardUI/PowerUI"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 346.0
+offset_right = 106.0
+offset_bottom = 363.0
+text = "Author"
+label_settings = SubResource("LabelSettings_4g8pf")
+
+[connection signal="gui_input" from="CardUI/AttackUI/SelectionButton" to="ClickHandler" method="_on_gui_input_event"]
+[connection signal="mouse_entered" from="CardUI/AttackUI/SelectionButton" to="ClickHandler" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CardUI/AttackUI/SelectionButton" to="ClickHandler" method="_on_mouse_exited"]
+[connection signal="gui_input" from="CardUI/SkillUI/SelectionButton" to="ClickHandler" method="_on_gui_input_event"]
+[connection signal="mouse_entered" from="CardUI/SkillUI/SelectionButton" to="ClickHandler" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CardUI/SkillUI/SelectionButton" to="ClickHandler" method="_on_mouse_exited"]
+[connection signal="gui_input" from="CardUI/PowerUI/SelectionButton" to="ClickHandler" method="_on_gui_input_event"]
+[connection signal="mouse_entered" from="CardUI/PowerUI/SelectionButton" to="ClickHandler" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="CardUI/PowerUI/SelectionButton" to="ClickHandler" method="_on_mouse_exited"]

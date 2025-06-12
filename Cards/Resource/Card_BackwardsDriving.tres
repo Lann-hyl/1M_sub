@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=19 format=3 uid="uid://dxoesacbfg08l"]
+
+[ext_resource type="Script" path="res://Cards/Effects/EffectStress.gd" id="1_3e26s"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_c1dbl"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_hw1qu"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetAllEnemies.gd" id="3_d3h4w"]
+[ext_resource type="Texture2D" uid="uid://bqybfrr0tsouj" path="res://Art/Card_art/Backwards_Driving__HDAK_art.jpg" id="4_46tjm"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="4_iu1y4"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="5_3en4n"]
+[ext_resource type="Script" path="res://Status/Debuffs/Debuff_Vulnerability.gd" id="5_hqfro"]
+[ext_resource type="Script" path="res://Entity/Components/Stats/StatModifiers.gd" id="6_6f2x8"]
+
+[sub_resource type="Resource" id="Resource_prbwu"]
+script = ExtResource("1_3e26s")
+
+[sub_resource type="Resource" id="Resource_5rr1e"]
+script = ExtResource("3_d3h4w")
+
+[sub_resource type="Resource" id="Resource_xa67f"]
+script = ExtResource("2_hw1qu")
+effect = SubResource("Resource_prbwu")
+value = 1
+targeting_function = SubResource("Resource_5rr1e")
+
+[sub_resource type="Resource" id="Resource_bv3xj"]
+script = ExtResource("6_6f2x8")
+permanent_add = 0
+permanent_multiply = 1.0
+temporary_add = -1
+temporary_multiply = 1.0
+
+[sub_resource type="Resource" id="Resource_fn71l"]
+script = ExtResource("5_hqfro")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 1.0
+status_modifier_base_value = SubResource("Resource_bv3xj")
+
+[sub_resource type="Resource" id="Resource_3rlo0"]
+script = ExtResource("4_iu1y4")
+status_to_apply = SubResource("Resource_fn71l")
+
+[sub_resource type="Resource" id="Resource_fne0c"]
+script = ExtResource("3_d3h4w")
+
+[sub_resource type="Resource" id="Resource_oygos"]
+script = ExtResource("2_hw1qu")
+effect = SubResource("Resource_3rlo0")
+value = 0
+targeting_function = SubResource("Resource_fne0c")
+
+[sub_resource type="Resource" id="Resource_o1lty"]
+script = ExtResource("5_3en4n")
+energy_cost = 0
+
+[resource]
+script = ExtResource("1_c1dbl")
+application_type = 1
+card_title = "Backwards Driving"
+card_key_art = ExtResource("4_46tjm")
+card_type = 1
+card_description = "Deal 1 Stress and inflict Distracted to all enemies."
+card_artist_name = "HDAK Art"
+card_effects_data = Array[ExtResource("2_hw1qu")]([SubResource("Resource_xa67f"), SubResource("Resource_oygos")])
+energy_info = SubResource("Resource_o1lty")

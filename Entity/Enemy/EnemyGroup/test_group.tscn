@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3brguvgvsh5m"]
+
+[ext_resource type="Script" path="res://Entity/Enemy/EnemyGroup.gd" id="1_5wmc0"]
+[ext_resource type="PackedScene" uid="uid://85ove4xi0gf0" path="res://Entity/Enemy/EnemyScene/Enemy_SaplingGreen.tscn" id="2_7m6bd"]
+[ext_resource type="PackedScene" uid="uid://bxgvbltw03uda" path="res://Entity/Enemy/EnemyScene/Enemy_SaplingRed.tscn" id="3_bafm4"]
+
+[node name="EnemyGroup" type="Node2D"]
+script = ExtResource("1_5wmc0")
+enemy_list_packed_scene = Array[PackedScene]([ExtResource("2_7m6bd"), ExtResource("3_bafm4")])

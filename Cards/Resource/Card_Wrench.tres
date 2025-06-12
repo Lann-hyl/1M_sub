@@ -1,0 +1,59 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=17 format=3 uid="uid://3wswcvpmk8s2"]
+
+[ext_resource type="Script" path="res://Cards/Effects/EffectDamage.gd" id="1_65i06"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_kywnl"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_0qlp0"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetingBase.gd" id="3_whtgc"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="4_a7wms"]
+[ext_resource type="Script" path="res://Status/Debuffs/Debuff_Weakness.gd" id="5_nravh"]
+[ext_resource type="Script" path="res://Entity/Components/Stats/StatModifiers.gd" id="6_852tp"]
+[ext_resource type="Texture2D" uid="uid://drdbxjegehyfu" path="res://Art/Card_art/Wrench__FalseIndigo.jpg" id="7_tf8vf"]
+
+[sub_resource type="Resource" id="Resource_s0kkh"]
+script = ExtResource("1_65i06")
+
+[sub_resource type="Resource" id="Resource_nrjwh"]
+script = ExtResource("3_whtgc")
+
+[sub_resource type="Resource" id="Resource_e0b3t"]
+script = ExtResource("2_0qlp0")
+effect = SubResource("Resource_s0kkh")
+value = 6
+targeting_function = SubResource("Resource_nrjwh")
+
+[sub_resource type="Resource" id="Resource_2mgb4"]
+script = ExtResource("6_852tp")
+permanent_add = 0
+permanent_multiply = 1.0
+temporary_add = -1
+temporary_multiply = 1.0
+
+[sub_resource type="Resource" id="Resource_wwyhl"]
+script = ExtResource("5_nravh")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 1.0
+status_modifier_base_value = SubResource("Resource_2mgb4")
+
+[sub_resource type="Resource" id="Resource_45rta"]
+script = ExtResource("4_a7wms")
+status_to_apply = SubResource("Resource_wwyhl")
+
+[sub_resource type="Resource" id="Resource_xwni0"]
+script = ExtResource("3_whtgc")
+
+[sub_resource type="Resource" id="Resource_bk18n"]
+script = ExtResource("2_0qlp0")
+effect = SubResource("Resource_45rta")
+value = 0
+targeting_function = SubResource("Resource_xwni0")
+
+[resource]
+script = ExtResource("1_kywnl")
+application_type = 1
+card_title = "Wrench"
+card_key_art = ExtResource("7_tf8vf")
+card_type = 0
+card_description = "Deal 6 damage and inflict Sapped"
+card_artist_name = "FalseIndigo"
+card_effects_data = Array[ExtResource("2_0qlp0")]([SubResource("Resource_e0b3t"), SubResource("Resource_bk18n")])

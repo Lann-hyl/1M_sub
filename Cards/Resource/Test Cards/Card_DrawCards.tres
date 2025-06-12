@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=8 format=3 uid="uid://d4lugn62mmlep"]
+
+[ext_resource type="Script" path="res://Cards/Effects/EffectDraw.gd" id="1_gma8k"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_1y3ib"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetPlayer.gd" id="3_yf6tk"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="4_lwkdt"]
+
+[sub_resource type="Resource" id="Resource_2ap55"]
+script = ExtResource("1_gma8k")
+
+[sub_resource type="Resource" id="Resource_oon2r"]
+script = ExtResource("3_yf6tk")
+
+[sub_resource type="Resource" id="Resource_5ywer"]
+script = ExtResource("2_1y3ib")
+effect = SubResource("Resource_2ap55")
+value = 2
+targeting_function = SubResource("Resource_oon2r")
+
+[resource]
+script = ExtResource("4_lwkdt")
+application_type = 0
+card_title = "Draw 2"
+card_type = 0
+card_description = "Draw 2 cards"
+card_effects_data = Array[ExtResource("2_1y3ib")]([SubResource("Resource_5ywer")])

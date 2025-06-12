@@ -6,6 +6,9 @@ extends Label
 
 
 func _ready() -> void:
+	# default to showing player health
+	if health_component == null:
+		health_component = PlayerManager.player.get_health_component()
 	health_component.on_health_changed.connect(_set_health)
 	_set_health(health_component.current_health)
 

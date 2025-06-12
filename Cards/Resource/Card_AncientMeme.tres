@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=18 format=3 uid="uid://b5gr83yvnrv00"]
+
+[ext_resource type="PackedScene" uid="uid://c13302ahcfpuy" path="res://Cards/Animation/Scene/Anim_Poison.tscn" id="1_dbxor"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_p31nr"]
+[ext_resource type="Script" path="res://Cards/Animation/CastPosition/CastPos_AllTargets.gd" id="2_wipu3"]
+[ext_resource type="Script" path="res://Cards/Animation/CastAnimationData.gd" id="3_1xdus"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="4_l2rqs"]
+[ext_resource type="Script" path="res://Status/Debuffs/Debuff_Poison.gd" id="5_m2sed"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="6_s2wma"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetingBase.gd" id="7_g7w7s"]
+[ext_resource type="Texture2D" uid="uid://b0gtttv5pemg4" path="res://Art/Card_art/Ancient_Meme__SleepySensei.png" id="8_hq8od"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="9_4abqr"]
+
+[sub_resource type="Resource" id="Resource_hj4rm"]
+script = ExtResource("2_wipu3")
+offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_ihsat"]
+script = ExtResource("3_1xdus")
+cast_animation_scene = ExtResource("1_dbxor")
+cast_position = SubResource("Resource_hj4rm")
+
+[sub_resource type="Resource" id="Resource_48s3q"]
+script = ExtResource("5_m2sed")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 2.0
+
+[sub_resource type="Resource" id="Resource_aaxxg"]
+script = ExtResource("4_l2rqs")
+status_to_apply = SubResource("Resource_48s3q")
+
+[sub_resource type="Resource" id="Resource_7gmfb"]
+script = ExtResource("7_g7w7s")
+
+[sub_resource type="Resource" id="Resource_h0ydg"]
+script = ExtResource("6_s2wma")
+effect = SubResource("Resource_aaxxg")
+value = 0
+targeting_function = SubResource("Resource_7gmfb")
+animation_data = SubResource("Resource_ihsat")
+
+[sub_resource type="Resource" id="Resource_ywvyb"]
+script = ExtResource("9_4abqr")
+energy_cost = 2
+
+[resource]
+script = ExtResource("1_p31nr")
+application_type = 1
+card_title = "Ancient Meme"
+card_key_art = ExtResource("8_hq8od")
+card_type = 1
+card_description = "Inflict 2 Cursed."
+card_artist_name = "SleepySensei"
+card_effects_data = Array[ExtResource("6_s2wma")]([SubResource("Resource_h0ydg")])
+energy_info = SubResource("Resource_ywvyb")

@@ -1,0 +1,87 @@
+[gd_scene load_steps=16 format=3 uid="uid://bpgsmfprnm2kk"]
+
+[ext_resource type="Script" path="res://Entity/Enemy/Enemy.gd" id="1_ya6nf"]
+[ext_resource type="Script" path="res://Entity/Components/StatComponent.gd" id="2_twygh"]
+[ext_resource type="Script" path="res://Entity/Components/StatusComponent.gd" id="3_7qc0d"]
+[ext_resource type="Script" path="res://Entity/Components/HealthComponent.gd" id="4_t7jp6"]
+[ext_resource type="Texture2D" uid="uid://bu626jwgp3r5x" path="res://Art/Enemies/green_sapling-default.png" id="5_dxya8"]
+[ext_resource type="Script" path="res://Input/ClickHandler.gd" id="6_m32ri"]
+[ext_resource type="Script" path="res://UI/HealthLabel.gd" id="7_tofxs"]
+[ext_resource type="Script" path="res://UI/StressLabel.gd" id="8_w2u2o"]
+[ext_resource type="Script" path="res://Entity/Components/PartyComponent.gd" id="8_yr066"]
+[ext_resource type="Script" path="res://Entity/Components/BehaviorComponent.gd" id="9_kvor6"]
+[ext_resource type="Resource" uid="uid://bsrdu33ukb1ym" path="res://Cards/Resource/Test Cards/Card_EnemyAttack.tres" id="10_l5325"]
+[ext_resource type="Script" path="res://Entity/Components/StressComponent.gd" id="11_qf75g"]
+[ext_resource type="PackedScene" uid="uid://dbidy5j4uyopc" path="res://Entity/Components/block_display.tscn" id="13_u3jb7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_urr12"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_3exsi"]
+font_size = 26
+font_color = Color(0.435294, 0.67451, 0.815686, 1)
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_ya6nf")
+
+[node name="StatComponent" type="Node" parent="."]
+script = ExtResource("2_twygh")
+
+[node name="StatusComponent" type="Node" parent="."]
+script = ExtResource("3_7qc0d")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("4_t7jp6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(6, 6)
+texture = ExtResource("5_dxya8")
+
+[node name="ClickHandler" type="Node" parent="."]
+script = ExtResource("6_m32ri")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-38, 48, 43, 48, 44, -44, -37, -44)
+
+[node name="HealthLabel" type="Label" parent="." node_paths=PackedStringArray("health_component")]
+offset_left = -57.0
+offset_top = -83.0
+offset_right = 57.0
+offset_bottom = -44.0
+text = "100 / 100"
+label_settings = SubResource("LabelSettings_urr12")
+horizontal_alignment = 1
+script = ExtResource("7_tofxs")
+health_component = NodePath("../HealthComponent")
+
+[node name="StressLabel" type="Label" parent="." node_paths=PackedStringArray("stress_component")]
+offset_left = -57.0
+offset_top = -109.0
+offset_right = 57.0
+offset_bottom = -70.0
+text = "100 / 100"
+label_settings = SubResource("LabelSettings_3exsi")
+horizontal_alignment = 1
+script = ExtResource("8_w2u2o")
+stress_component = NodePath("../StressComponent")
+
+[node name="PartyComponent" type="Node" parent="."]
+script = ExtResource("8_yr066")
+
+[node name="BehaviorComponent" type="Node" parent="."]
+script = ExtResource("9_kvor6")
+attack = ExtResource("10_l5325")
+
+[node name="StressComponent" type="Node" parent="."]
+script = ExtResource("11_qf75g")
+max_stress = 80
+stress_generation = 20
+
+[node name="BlockDisplay" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("13_u3jb7")]
+healthComponent = NodePath("../HealthComponent")
+
+[connection signal="input_event" from="Area2D" to="ClickHandler" method="_on_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="ClickHandler" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="ClickHandler" method="_on_mouse_exited"]

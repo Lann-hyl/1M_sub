@@ -299,7 +299,7 @@ func _handle_discard_queue() -> void:
 
 
 func _on_phase_changed(new_phase: GlobalEnums.CombatPhase, _old_phase: GlobalEnums.CombatPhase) -> void:
-	if new_phase == GlobalEnums.CombatPhase.PLAYER_ATTACKING:
+	if new_phase == GlobalEnums.CombatPhase.PLAYER_ATTACKING and !are_cards_dealing():
 		deal_to_starting_hand_size()
 	if new_phase == GlobalEnums.CombatPhase.PLAYER_FINISHING:
 		if (cards_in_hand.size() == 0):

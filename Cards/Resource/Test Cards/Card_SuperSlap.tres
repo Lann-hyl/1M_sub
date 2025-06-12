@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=13 format=3 uid="uid://yc2ns5s0qask"]
+
+[ext_resource type="PackedScene" uid="uid://bbseovtwsgegg" path="res://Cards/Animation/Scene/Anim_Slap.tscn" id="1_0uyjv"]
+[ext_resource type="Script" path="res://Cards/Animation/CastPosition/CastPos_AllTargets.gd" id="2_jfjgp"]
+[ext_resource type="Script" path="res://Cards/Animation/CastAnimationData.gd" id="3_hhhei"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectDamage.gd" id="4_gehp1"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="5_ipfy3"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetAllEnemies.gd" id="6_kxvg4"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="7_hdjv3"]
+
+[sub_resource type="Resource" id="Resource_x0fd8"]
+script = ExtResource("2_jfjgp")
+offset = Vector2(0, 50)
+
+[sub_resource type="Resource" id="Resource_uhx7l"]
+script = ExtResource("3_hhhei")
+cast_animation_scene = ExtResource("1_0uyjv")
+cast_position = SubResource("Resource_x0fd8")
+
+[sub_resource type="Resource" id="Resource_hsf7j"]
+script = ExtResource("4_gehp1")
+
+[sub_resource type="Resource" id="Resource_bi1fs"]
+script = ExtResource("6_kxvg4")
+
+[sub_resource type="Resource" id="Resource_5b3is"]
+script = ExtResource("5_ipfy3")
+effect = SubResource("Resource_hsf7j")
+value = 2
+targeting_function = SubResource("Resource_bi1fs")
+animation_data = SubResource("Resource_uhx7l")
+
+[resource]
+script = ExtResource("7_hdjv3")
+application_type = 1
+card_title = "Super Slap"
+card_type = 0
+card_description = "Deal 2 damage to all targets."
+card_effects_data = Array[ExtResource("5_ipfy3")]([SubResource("Resource_5b3is")])

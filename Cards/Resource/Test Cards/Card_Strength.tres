@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=14 format=3 uid="uid://btj36bhn3n2tr"]
+
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="1_k0qgj"]
+[ext_resource type="Script" path="res://Status/Buffs/Buff_Strength.gd" id="2_lq0xl"]
+[ext_resource type="Script" path="res://Entity/Components/Stats/StatModifiers.gd" id="3_q4cd0"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="4_8rg8k"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="5_e4pqm"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetPlayer.gd" id="5_pg6gn"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="5_xufij"]
+
+[sub_resource type="Resource" id="Resource_jxq2s"]
+script = ExtResource("3_q4cd0")
+permanent_add = 0
+permanent_multiply = 1.0
+temporary_add = 1
+temporary_multiply = 1.0
+
+[sub_resource type="Resource" id="Resource_pm26j"]
+script = ExtResource("2_lq0xl")
+infinite_duration = false
+status_turn_duration = 2
+status_power = 1.0
+status_modifier_base_value = SubResource("Resource_jxq2s")
+
+[sub_resource type="Resource" id="Resource_c8rcp"]
+script = ExtResource("1_k0qgj")
+status_to_apply = SubResource("Resource_pm26j")
+
+[sub_resource type="Resource" id="Resource_8dsc0"]
+script = ExtResource("5_pg6gn")
+
+[sub_resource type="Resource" id="Resource_ucd6r"]
+script = ExtResource("4_8rg8k")
+effect = SubResource("Resource_c8rcp")
+value = 0
+targeting_function = SubResource("Resource_8dsc0")
+
+[sub_resource type="Resource" id="Resource_1hn6q"]
+script = ExtResource("5_xufij")
+energy_cost = 2
+
+[resource]
+script = ExtResource("5_e4pqm")
+application_type = 0
+card_title = "Strength"
+card_type = 0
+card_description = "Targeted entity deals one more damage for 2 turns"
+card_artist_name = "NULL"
+card_effects_data = Array[ExtResource("4_8rg8k")]([SubResource("Resource_ucd6r")])
+energy_info = SubResource("Resource_1hn6q")

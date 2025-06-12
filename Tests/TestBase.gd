@@ -49,6 +49,7 @@ var _enemy_list: Array[Entity]
 ## To be overidden by child tests if they want to do something more or something else [br]
 ## Child tests that just want to add some stuff can call super to do the initial setup, then their own setup
 func before_each() -> void:
+	DebugVar.DEBUG_USE_TEST_ENEMY_GROUP = true
 	# Init the player, battler, and card container
 	_player = _player_scene.instantiate()
 	_battler = _battler_scene.instantiate()
@@ -59,8 +60,9 @@ func before_each() -> void:
 	get_tree().root.add_child(_battler)
 	get_tree().root.add_child(_card_container)
 	
-	# Setup enemy list
 	_enemy_list = _battler._enemy_list
+	
+	# Setup enemy list
 	_enemy = _enemy_list[0] # enemy 1 has 100 HP
 	_enemy_2 = _enemy_list[1] # enemy 2 50 HP
 	
@@ -92,6 +94,7 @@ func before_each() -> void:
 
 ## Clear between tests
 func after_each() -> void:
+	DebugVar.DEBUG_USE_TEST_ENEMY_GROUP = false
 	_player.queue_free()
 	_enemy.queue_free()
 	_enemy_2.queue_free()

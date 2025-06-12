@@ -21,10 +21,16 @@ class_name CardBase
 @export var card_title: String = "NULL"
 
 ## The art used on the card (ie the image at the top, not the layout of the card)
-@export var card_key_art: ImageTexture = null
+@export var card_key_art: Texture2D = null
+
+## Type of Card: Attack, Skill, or Power
+@export var card_type: GlobalEnums.CardType = GlobalEnums.CardType.ATTACK
 
 ## The description of the card
 @export var card_description: String = "NULL"
+
+## Name of the artist that made the card art
+@export var card_artist_name: String = "NULL"
 
 ## A list of the effects that the card will apply when played [br]
 ## Effect data is not purely the effect, it also contains information about targets among other things, see [EffectData]

@@ -1,3 +1,547 @@
-[gd_scene format=3 uid="uid://cx0koj0qbu3k3"]
+[gd_scene load_steps=20 format=3 uid="uid://ch8qid26mt5fs"]
 
-[node name="Credits" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://dxkon0ylsye4v" path="res://Art/Background/0-1.credits.png" id="1_4ctv3"]
+[ext_resource type="Script" path="res://#Scenes/SceneScripts/credits.gd" id="1_km20a"]
+[ext_resource type="Texture2D" uid="uid://cbg6dn7qw5pfy" path="res://Art/NPC/rescued_saplings_comfy_sleepy-static.png" id="2_y4lop"]
+[ext_resource type="Texture2D" uid="uid://dk4m7alds0v51" path="res://Art/NPC/rescued_saplings_cool-static.png" id="3_ij6vd"]
+[ext_resource type="Texture2D" uid="uid://dkcbfi6iaeeir" path="res://Art/NPC/rescued_saplings_emo-static.png" id="4_bi1w0"]
+[ext_resource type="Texture2D" uid="uid://b6lam85b6kin7" path="res://Art/NPC/rescued_saplings_gamer-static.png" id="5_po57g"]
+[ext_resource type="Texture2D" uid="uid://cwqwgrrwq5phb" path="res://Art/NPC/rescued_saplings_maid-static.png" id="6_en7ht"]
+[ext_resource type="Texture2D" uid="uid://dq8xrca05abuq" path="res://Art/NPC/rescued_saplings_milf-static.png" id="7_h4sv1"]
+[ext_resource type="Texture2D" uid="uid://bvolhkcto8xef" path="res://Art/NPC/rescued_saplings_nerd-static.png" id="8_xvqp0"]
+[ext_resource type="Texture2D" uid="uid://dhi45aff4o0ia" path="res://Art/NPC/rescued_saplings_old-static.png" id="9_n610m"]
+[ext_resource type="Texture2D" uid="uid://b2648vdvobbt" path="res://Art/NPC/rescued_saplings_snow-static.png" id="10_unw81"]
+[ext_resource type="AnimationLibrary" uid="uid://dfkng08hfjpdv" path="res://Art/Animation/credits/In.res" id="11_xdj82"]
+[ext_resource type="AnimationLibrary" uid="uid://jlt8btc7fx2j" path="res://Art/Animation/credits/Out.res" id="12_8iix6"]
+
+[sub_resource type="Gradient" id="Gradient_s6c1g"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1cbhb"]
+gradient = SubResource("Gradient_s6c1g")
+
+[sub_resource type="Animation" id="Animation_2v08l"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RescuedSaplingsSnowIn:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3678, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RescuedSaplingsSnowIn:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(823, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RescuedSaplingsSnowIn:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.0817433, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RescuedSaplingsSnowIn:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.23597)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RescuedSaplingsOldIn:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RescuedSaplingsOldIn:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2949, 809)]
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RescuedSaplingsNerdIn:position:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3689, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RescuedSaplingsNerdIn:position:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1144, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RescuedSaplingsNerdIn:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("RescuedSaplingsMilfIn:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("RescuedSaplingsMilfIn:position:x")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3278, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("RescuedSaplingsMilfIn:position:y")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1136, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("RescuedSaplingsMaidIn:position:x")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(3706, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("RescuedSaplingsMaidIn:position:y")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1423, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/14/type = "bezier"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("RescuedSaplingsEmoIn:position:x")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(2914, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/15/type = "bezier"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("RescuedSaplingsEmoIn:position:y")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1455, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("RescuedSaplingsEmoIn:scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("RescuedSaplingsGamerIn:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2938, 1154)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("RescuedSaplingsGamerIn:rotation")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("RescuedSaplingsCoolIn:position")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3261, 806)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("RescuedSaplingsCoolIn:scale")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.3, 0.3)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("RescuedSaplingsSleepyIn:position")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3280, 1459)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovav8"]
+_data = {
+"RESET": SubResource("Animation_2v08l")
+}
+
+[sub_resource type="Animation" id="Animation_3w5yu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RescuedSaplingsCoolOut:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1306, 777)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RescuedSaplingsSnowOut:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-924, 831)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RescuedSaplingsOldOut:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1653, 817)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RescuedSaplingsNerdOut:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-913, 1152)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RescuedSaplingsMilfOut:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1324, 1144)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RescuedSaplingsGamerOut:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1664, 1162)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RescuedSaplingsEmoOut:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1688, 1463)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("RescuedSaplingsSleepyOut:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1322, 1467)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("RescuedSaplingsMaidOut:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-896, 1431)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hn5re"]
+_data = {
+"RESET": SubResource("Animation_3w5yu")
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_km20a")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_4ctv3")
+
+[node name="CenterContainer" type="CenterContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -907.5
+offset_top = -310.0
+offset_right = 907.5
+offset_bottom = 247.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Background/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "Name
+Role 1, Role 2
+Role 3
+
+"
+horizontal_alignment = 1
+
+[node name="BlackOverlay" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = SubResource("GradientTexture2D_1cbhb")
+
+[node name="RescuedSaplingsCoolIn" type="Sprite2D" parent="."]
+position = Vector2(3261, 806)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_ij6vd")
+
+[node name="RescuedSaplingsEmoIn" type="Sprite2D" parent="."]
+position = Vector2(2914, 1455)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_bi1w0")
+
+[node name="RescuedSaplingsGamerIn" type="Sprite2D" parent="."]
+position = Vector2(2938, 1154)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_po57g")
+
+[node name="RescuedSaplingsMaidIn" type="Sprite2D" parent="."]
+position = Vector2(3706, 1423)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_en7ht")
+
+[node name="RescuedSaplingsMilfIn" type="Sprite2D" parent="."]
+position = Vector2(3278, 1136)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_h4sv1")
+
+[node name="RescuedSaplingsNerdIn" type="Sprite2D" parent="."]
+position = Vector2(3689, 1144)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_xvqp0")
+
+[node name="RescuedSaplingsOldIn" type="Sprite2D" parent="."]
+position = Vector2(2949, 809)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("9_n610m")
+
+[node name="RescuedSaplingsSleepyIn" type="Sprite2D" parent="."]
+position = Vector2(3280, 1459)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_y4lop")
+
+[node name="RescuedSaplingsSnowIn" type="Sprite2D" parent="."]
+position = Vector2(3678, 823)
+rotation = 0.0817433
+scale = Vector2(0.3, 0.23597)
+texture = ExtResource("10_unw81")
+
+[node name="AnimationPlayerIn" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ovav8"),
+"In": ExtResource("11_xdj82"),
+"Out": ExtResource("12_8iix6")
+}
+speed_scale = 1.5
+
+[node name="AnimationPlayerOut" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hn5re"),
+"Out": ExtResource("12_8iix6")
+}
+speed_scale = 2.0
+
+[node name="RescuedSaplingsCoolOut" type="Sprite2D" parent="."]
+position = Vector2(-1306, 777)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_ij6vd")
+
+[node name="RescuedSaplingsEmoOut" type="Sprite2D" parent="."]
+position = Vector2(-1688, 1463)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_bi1w0")
+
+[node name="RescuedSaplingsGamerOut" type="Sprite2D" parent="."]
+position = Vector2(-1664, 1162)
+rotation = 2.03914
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_po57g")
+
+[node name="RescuedSaplingsMaidOut" type="Sprite2D" parent="."]
+position = Vector2(-896, 1431)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_en7ht")
+
+[node name="RescuedSaplingsMilfOut" type="Sprite2D" parent="."]
+position = Vector2(-1324, 1144)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_h4sv1")
+
+[node name="RescuedSaplingsNerdOut" type="Sprite2D" parent="."]
+position = Vector2(-913, 1152)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("8_xvqp0")
+
+[node name="RescuedSaplingsOldOut" type="Sprite2D" parent="."]
+position = Vector2(-1653, 817)
+rotation = -12.5664
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("9_n610m")
+
+[node name="RescuedSaplingsSleepyOut" type="Sprite2D" parent="."]
+position = Vector2(-1322, 1467)
+scale = Vector2(0.227, 0.35)
+texture = ExtResource("2_y4lop")
+
+[node name="RescuedSaplingsSnowOut" type="Sprite2D" parent="."]
+position = Vector2(-924, 831)
+rotation = 0.0934342
+scale = Vector2(0.3, 0.289995)
+texture = ExtResource("10_unw81")

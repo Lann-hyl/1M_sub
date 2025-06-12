@@ -93,8 +93,8 @@ func test_poison_status() -> void:
 
 # Test Card to Deal 2 damage to all enemies
 func test_card_damage_all() -> void:
-	_enemy.get_party_component().set_party(_enemy_list)
-	var card_damage_all: CardBase = load("res://Cards/Resource/Card_DamageAllEnemies.tres")
+	_enemy.get_party_component().set_party(_enemy_list )
+	var card_damage_all: CardBase = load("res://Cards/Resource/Test Cards/Card_DamageAllEnemies.tres")
 	
 	card_damage_all.on_card_play(_player, null)
 
@@ -104,7 +104,7 @@ func test_card_damage_all() -> void:
 
 # Test Card to Deal 3 damage to an enemy
 func test_card_damage() -> void:
-	var card_damage: CardBase = load("res://Cards/Resource/Card_Damage.tres")
+	var card_damage: CardBase = load("res://Cards/Resource/Test Cards/Card_Damage.tres")
 
 	card_damage.on_card_play(_player, _enemy)
 	
@@ -114,7 +114,7 @@ func test_card_damage() -> void:
 # Test Card to deal damage to enemy based on amount of player health lost
 func test_card_damage_health() -> void:
 	_player.get_health_component()._set_health(90)
-	var card_damage_health: CardBase = load("res://Cards/Resource/Card_DamageHealth.tres")
+	var card_damage_health: CardBase = load("res://Cards/Resource/Test Cards/Card_DamageHealth.tres")
 
 	card_damage_health.on_card_play(_player, _enemy)
 	
@@ -123,7 +123,7 @@ func test_card_damage_health() -> void:
 
 # Test Card that applies 3 poison to enemy and does poison damage on enemy turn
 func test_card_poison() -> void:
-	var card_poison: CardBase = load("res://Cards/Resource/Card_Poison.tres")
+	var card_poison: CardBase = load("res://Cards/Resource/Test Cards/Card_Poison.tres")
 
 	assert_eq(_enemy_status_component.current_status.size(), 0)
 	card_poison.on_card_play(_player, _enemy)
@@ -141,7 +141,7 @@ func test_card_poison() -> void:
 
 # Test Card that deals 1 damage and applies 2 poison to enemy and does poison damage on enemy turn
 func test_card_damage_and_poison() -> void:
-	var card_damage_and_poison: CardBase = load("res://Cards/Resource/Card_damage_and_poison.tres")
+	var card_damage_and_poison: CardBase = load("res://Cards/Resource/Test Cards/Card_damage_and_poison.tres")
 
 	assert_eq(_enemy_status_component.current_status.size(), 0)
 	card_damage_and_poison.on_card_play(_player, _enemy)
@@ -160,7 +160,7 @@ func test_card_damage_and_poison() -> void:
 
 # Test Card that heals one HP to player
 func test_card_heal() -> void:
-	var card_heal: CardBase = load("res://Cards/Resource/Card_Heal.tres")
+	var card_heal: CardBase = load("res://Cards/Resource/Test Cards/Card_Heal.tres")
 	_player_health_component._set_health(95)
 
 	card_heal.on_card_play(_player, _player)
@@ -168,9 +168,9 @@ func test_card_heal() -> void:
 	assert_eq(_player_health_component.current_health, 96)
 
 func test_card_heal_with_strength_buff() -> void:
-	var card_heal: CardBase = load("res://Cards/Resource/Card_Heal.tres")
-	var buff: CardBase = load("res://Cards/Resource/Card_Strength.tres")
-
+	var card_heal: CardBase = load("res://Cards/Resource/Test Cards/Card_Heal.tres")
+	var buff: CardBase = load("res://Cards/Resource/Test Cards/Card_Strength.tres")
+	StatModifiers.ready_card_modifier(buff)
 
 	_player_health_component._set_health(90)
 
@@ -180,8 +180,9 @@ func test_card_heal_with_strength_buff() -> void:
 	assert_eq(_player_health_component.current_health, 91)
 
 func test_card_heal_with_heal_buff() -> void:
-	var card_heal: CardBase = load("res://Cards/Resource/Card_Heal.tres")
-	var buff: CardBase = load("res://Cards/Resource/Card_Buff_healing.tres")
+	var card_heal: CardBase = load("res://Cards/Resource/Test Cards/Card_Heal.tres")
+	var buff: CardBase = load("res://Cards/Resource/Test Cards/Card_Buff_healing.tres")
+	StatModifiers.ready_card_modifier(buff)
 
 	_player_health_component._set_health(90)
 
@@ -193,8 +194,9 @@ func test_card_heal_with_heal_buff() -> void:
 
 
 func test_card_heal_with_heal_debuff() -> void:
-	var card_heal: CardBase = load("res://Cards/Resource/Card_Heal.tres")
-	var debuff: CardBase = load("res://Cards/Resource/Card_Debuff_healing.tres")
+	var card_heal: CardBase = load("res://Cards/Resource/Test Cards/Card_Heal.tres")
+	var debuff: CardBase = load("res://Cards/Resource/Test Cards/Card_Debuff_healing.tres")
+	StatModifiers.ready_card_modifier(debuff)
 
 	_player_health_component._set_health(90)
 
@@ -206,7 +208,7 @@ func test_card_heal_with_heal_debuff() -> void:
 
 # Test card that deals 10 damage to every entity (player and enemies)
 func test_card_damage_everything() -> void:
-	var card_damage_everything: CardBase = load("res://Cards/Resource/Card_Damage_EVERYTHING.tres")
+	var card_damage_everything: CardBase = load("res://Cards/Resource/Test Cards/Card_Damage_EVERYTHING.tres")
 	card_damage_everything.on_card_play(_player, null)
 	
 	assert_eq(_player_health_component.current_health, 90)
@@ -216,7 +218,7 @@ func test_card_damage_everything() -> void:
 
 #Apply 3 poison effect randomly, each with 3 turns
 func test_card_random_poison() -> void:
-	var card_random_poison: CardBase = load("res://Cards/Resource/Card_PoisonRandom.tres")
+	var card_random_poison: CardBase = load("res://Cards/Resource/Test Cards/Card_PoisonRandom.tres")
 	
 	card_random_poison.on_card_play(_player, null)
 	
@@ -231,17 +233,17 @@ func test_card_random_poison() -> void:
 	assert_eq(total_turn_duration, 9)
 
 
-# Deal 4 damages to the targeted enemy and the one on its right	
-func test_card_fauna_sweep() -> void:
-	var card_fauna_sweep: CardBase = load("res://Cards/Resource/Card_FaunaSweep.tres")
+# Deal 6 damage to all enemies
+func test_card_sweep() -> void:
+	var card_fauna_sweep: CardBase = load("res://Cards/Resource/Card_Sweep.tres")
 	
 	card_fauna_sweep.on_card_play(_player, _enemy)
 	
-	assert_eq(_enemy_health_component.current_health, 96)
-	assert_eq(_enemy_2_health_component.current_health, 46)
+	assert_eq(_enemy_health_component.current_health, 94)
+	assert_eq(_enemy_2_health_component.current_health, 44)
 	
 	card_fauna_sweep.on_card_play(_player, _enemy_2)
 	
-	assert_eq(_enemy_health_component.current_health, 96) 
+	assert_eq(_enemy_health_component.current_health, 88) 
 	# Enemy 1 is on the left, we target enemy_2 so enemy 1 not affected
-	assert_eq(_enemy_2_health_component.current_health, 42)
+	assert_eq(_enemy_2_health_component.current_health, 38)

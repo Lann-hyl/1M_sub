@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=16 format=3 uid="uid://bqtlo8flqqwdl"]
+
+[ext_resource type="Texture2D" uid="uid://b1r4rs6swc2sf" path="res://Art/Card_art/Mic_Bonk__wizstays.png" id="1_5b2o6"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_mfqnx"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectDamage.gd" id="1_p6lxy"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_4xmy4"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetPlayer.gd" id="3_6653l"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectSooth.gd" id="4_8dxvl"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetAllEnemies.gd" id="5_tlfay"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="7_davh6"]
+
+[sub_resource type="Resource" id="Resource_76ybi"]
+script = ExtResource("1_p6lxy")
+
+[sub_resource type="Resource" id="Resource_s24ex"]
+script = ExtResource("3_6653l")
+
+[sub_resource type="Resource" id="Resource_vh773"]
+script = ExtResource("2_4xmy4")
+effect = SubResource("Resource_76ybi")
+value = 2
+targeting_function = SubResource("Resource_s24ex")
+
+[sub_resource type="Resource" id="Resource_gsh0e"]
+script = ExtResource("4_8dxvl")
+
+[sub_resource type="Resource" id="Resource_xv7ia"]
+script = ExtResource("5_tlfay")
+
+[sub_resource type="Resource" id="Resource_3assf"]
+script = ExtResource("2_4xmy4")
+effect = SubResource("Resource_gsh0e")
+value = 2
+targeting_function = SubResource("Resource_xv7ia")
+
+[sub_resource type="Resource" id="Resource_mj6kn"]
+script = ExtResource("7_davh6")
+energy_cost = 1
+
+[resource]
+script = ExtResource("1_mfqnx")
+application_type = 2
+card_title = "Mic Bonk"
+card_key_art = ExtResource("1_5b2o6")
+card_type = 1
+card_description = "Deal 2 Damage to self. Deal 2 Soothe to all enemies."
+card_artist_name = "wizstays"
+card_effects_data = Array[ExtResource("2_4xmy4")]([SubResource("Resource_vh773"), SubResource("Resource_3assf")])
+energy_info = SubResource("Resource_mj6kn")

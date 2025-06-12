@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://1uqpxix8wb18"]
+
+[ext_resource type="PackedScene" uid="uid://d3brguvgvsh5m" path="res://Entity/Enemy/EnemyGroup/test_group.tscn" id="1_fm87o"]
+[ext_resource type="PackedScene" uid="uid://7hs1nfyh7mj4" path="res://Entity/Enemy/EnemyScene/golden_cauldron.tscn" id="2_wjrop"]
+
+[node name="EnemyGroup" instance=ExtResource("1_fm87o")]
+enemy_list_packed_scene = Array[PackedScene]([ExtResource("2_wjrop")])
+positions = Array[Vector2]([Vector2(1330, 580)])

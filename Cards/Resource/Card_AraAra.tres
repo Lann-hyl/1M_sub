@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=11 format=3 uid="uid://qxm7k4pr54m2"]
+
+[ext_resource type="Script" path="res://Cards/Effects/EffectSooth.gd" id="1_go3mx"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_v5swq"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetingBase.gd" id="3_rpqa3"]
+[ext_resource type="Texture2D" uid="uid://ceex1yybqmow" path="res://Art/Card_art/Ara_Ara__Ryussei.png" id="4_clb3t"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="5_6vs2o"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="5_ra44s"]
+
+[sub_resource type="Resource" id="Resource_1h02a"]
+script = ExtResource("1_go3mx")
+
+[sub_resource type="Resource" id="Resource_tn885"]
+script = ExtResource("3_rpqa3")
+
+[sub_resource type="Resource" id="Resource_105p5"]
+script = ExtResource("2_v5swq")
+effect = SubResource("Resource_1h02a")
+value = 2
+targeting_function = SubResource("Resource_tn885")
+
+[sub_resource type="Resource" id="Resource_ehsmw"]
+script = ExtResource("5_ra44s")
+energy_cost = 2
+
+[resource]
+script = ExtResource("5_6vs2o")
+application_type = 1
+card_title = "Ara-Ara"
+card_key_art = ExtResource("4_clb3t")
+card_type = 1
+card_description = "Deal 2 Soothe twice."
+card_artist_name = "Ryussei"
+card_effects_data = Array[ExtResource("2_v5swq")]([SubResource("Resource_105p5"), SubResource("Resource_105p5")])
+energy_info = SubResource("Resource_ehsmw")

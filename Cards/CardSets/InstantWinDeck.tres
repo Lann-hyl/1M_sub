@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="CardSetBase" load_steps=7 format=3 uid="uid://pot7cg3o6qy3"]
 
-[ext_resource type="Resource" uid="uid://dliguwgspqyx0" path="res://Cards/Resource/DO_NOT_USE_IN_DECKS/DO_NOT_USE_IN_DECK_insta_kill.tres" id="1_6mukv"]
-[ext_resource type="Resource" uid="uid://6thyux8u44dk" path="res://Cards/Resource/DO_NOT_USE_IN_DECKS/DO_NOT_USE_IN_DECK_insta_sooth.tres" id="2_jr0a6"]
-[ext_resource type="Resource" uid="uid://c4nm7mbdlsf6r" path="res://Cards/Resource/Card_Banana.tres" id="3_ptv1b"]
-[ext_resource type="Resource" uid="uid://d12g33rc6c3u5" path="res://Cards/Resource/Card_Heal.tres" id="4_jfguc"]
-[ext_resource type="Resource" uid="uid://btj36bhn3n2tr" path="res://Cards/Resource/Card_Strength.tres" id="5_g72ks"]
+[ext_resource type="Resource" uid="uid://dmgrkemuj71na" path="res://Cards/Resource/DO_NOT_USE_IN_DECKS/DO_NOT_USE_IN_DECK_insta_kill.tres" id="1_6mukv"]
+[ext_resource type="Resource" uid="uid://b2isycb5jkern" path="res://Cards/Resource/DO_NOT_USE_IN_DECKS/DO_NOT_USE_IN_DECK_insta_sooth.tres" id="2_jr0a6"]
+[ext_resource type="Resource" uid="uid://c8kpsky7tt3yq" path="res://Cards/Resource/Card_Banana.tres" id="3_ptv1b"]
+[ext_resource type="Resource" uid="uid://d12g33rc6c3u5" path="res://Cards/Resource/Test Cards/Card_Heal.tres" id="4_jfguc"]
+[ext_resource type="Resource" uid="uid://btj36bhn3n2tr" path="res://Cards/Resource/Test Cards/Card_Strength.tres" id="5_g72ks"]
 [ext_resource type="Script" path="res://Cards/CardSetBase.gd" id="21_rmslx"]
 
 [resource]

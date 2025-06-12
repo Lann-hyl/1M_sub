@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdt4k2reymt2i"]
+
+[ext_resource type="Script" path="res://Shop/ShopItemCard.gd" id="1_4ryor"]
+[ext_resource type="PackedScene" uid="uid://caxbd2ppk3ans" path="res://Cards/Card.tscn" id="2_2bk7m"]
+
+[node name="ShopItemCard" type="Control" node_paths=PackedStringArray("cardWorld", "priceLabel")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_right = -1.0
+script = ExtResource("1_4ryor")
+cardWorld = NodePath("Card")
+cost = 25
+priceLabel = NodePath("PriceLabel/Label")
+
+[node name="Card" parent="." instance=ExtResource("2_2bk7m")]
+offset_left = -178.0
+offset_top = -362.0
+offset_right = 172.0
+offset_bottom = 108.0
+
+[node name="PriceLabel" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -163.0
+offset_top = 124.0
+offset_right = 180.0
+offset_bottom = 213.0
+
+[node name="Label" type="Label" parent="PriceLabel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 342.0
+offset_bottom = 86.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 56
+text = "dfdsfds
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[editable path="Card"]

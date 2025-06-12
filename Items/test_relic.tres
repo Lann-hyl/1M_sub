@@ -6,4 +6,4 @@
 script = ExtResource("1_pjxtd")
 name = "Defualt Icon"
 description = "test_desc"
-sprite_path = "res://icon.svg"
+sprite_path = "res://addons/gut/icon.png"

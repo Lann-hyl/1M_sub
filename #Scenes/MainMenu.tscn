@@ -96,7 +96,6 @@ layout_mode = 2
 size_flags_vertical = 3
 focus_neighbor_top = NodePath("../Options")
 focus_neighbor_bottom = NodePath("../Quit")
-disabled = true
 texture_normal = ExtResource("9_70yof")
 texture_hover = ExtResource("10_vce0e")
 texture_focused = ExtResource("10_vce0e")
@@ -126,5 +125,6 @@ cancel_button_text = "No"
 [connection signal="pressed" from="Menu buttons/Continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="Menu buttons/New game" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Menu buttons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Menu buttons/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Menu buttons/Quit" to="." method="_on_quit_pressed"]
 [connection signal="confirmed" from="StartNewGameDialog" to="." method="_on_start_new_game_dialog_confirmed"]

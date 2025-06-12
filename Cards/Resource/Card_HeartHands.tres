@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=11 format=3 uid="uid://b5fbomvc1uqqf"]
+
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_5whsh"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectSooth.gd" id="1_ejptk"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_q8mlq"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetingBase.gd" id="3_w54vk"]
+[ext_resource type="Texture2D" uid="uid://djnajlyj6kgfb" path="res://Art/Card_art/Heart_Hands__Neid.png" id="4_4gu7g"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="5_3uh5f"]
+
+[sub_resource type="Resource" id="Resource_ust4n"]
+script = ExtResource("1_ejptk")
+
+[sub_resource type="Resource" id="Resource_hjt2o"]
+script = ExtResource("3_w54vk")
+
+[sub_resource type="Resource" id="Resource_xywky"]
+script = ExtResource("2_q8mlq")
+effect = SubResource("Resource_ust4n")
+value = 8
+targeting_function = SubResource("Resource_hjt2o")
+
+[sub_resource type="Resource" id="Resource_nnnc5"]
+script = ExtResource("5_3uh5f")
+energy_cost = 3
+
+[resource]
+script = ExtResource("1_5whsh")
+application_type = 1
+card_title = "Heart Hands"
+card_key_art = ExtResource("4_4gu7g")
+card_type = 1
+card_description = "Deal 8 Soothe."
+card_artist_name = "Neid"
+card_effects_data = Array[ExtResource("2_q8mlq")]([SubResource("Resource_xywky")])
+energy_info = SubResource("Resource_nnnc5")

@@ -89,6 +89,7 @@ var dialogue_line: DialogueLine:
 
 
 func _ready() -> void:
+	_play_music()
 	SaveManager.execute_save()
 	balloon.hide()
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
@@ -177,3 +178,15 @@ func add_flavor_text(flavor_text: String, flavor_number: int) -> void:
 
 func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
+
+func _play_music() -> void:
+	var percentage_complete: float = MapManager.get_map_percent_with_player_position()
+	var music_track: GlobalEnums.MusicTrack
+	if percentage_complete <= 33:
+		music_track = GlobalEnums.MusicTrack.AREA_ONE
+	elif percentage_complete > 33 and percentage_complete <= 66:
+		music_track = GlobalEnums.MusicTrack.AREA_TWO
+	elif percentage_complete > 66 and percentage_complete <= 99:
+		music_track = GlobalEnums.MusicTrack.AREA_THREE
+	
+	AudioManager.start_music(music_track)

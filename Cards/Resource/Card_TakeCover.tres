@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=11 format=3 uid="uid://dxsak4t37w0po"]
+
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_66tu2"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectAddBlock.gd" id="1_ww6p5"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_votuv"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetPlayer.gd" id="3_reiqj"]
+[ext_resource type="Texture2D" uid="uid://dwedsclhthx3v" path="res://Art/Card_art/Take_Cover__TheCT.png" id="4_k0xkm"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="5_bhpbg"]
+
+[sub_resource type="Resource" id="Resource_12d0o"]
+script = ExtResource("1_ww6p5")
+
+[sub_resource type="Resource" id="Resource_ansma"]
+script = ExtResource("3_reiqj")
+
+[sub_resource type="Resource" id="Resource_0prdd"]
+script = ExtResource("2_votuv")
+effect = SubResource("Resource_12d0o")
+value = 7
+targeting_function = SubResource("Resource_ansma")
+
+[sub_resource type="Resource" id="Resource_a81q1"]
+script = ExtResource("5_bhpbg")
+energy_cost = 2
+
+[resource]
+script = ExtResource("1_66tu2")
+application_type = 0
+card_title = "Take Cover"
+card_key_art = ExtResource("4_k0xkm")
+card_type = 0
+card_description = "Gain 7 Defense."
+card_artist_name = "TheCT"
+card_effects_data = Array[ExtResource("2_votuv")]([SubResource("Resource_0prdd")])
+energy_info = SubResource("Resource_a81q1")

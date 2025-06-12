@@ -1,0 +1,85 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=25 format=3 uid="uid://cxk0880vdngpf"]
+
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_p7cuv"]
+[ext_resource type="PackedScene" uid="uid://c13302ahcfpuy" path="res://Cards/Animation/Scene/Anim_Poison.tscn" id="1_xahnt"]
+[ext_resource type="Script" path="res://Cards/Animation/CastPosition/CastPos_AllTargets.gd" id="2_mt3i6"]
+[ext_resource type="Script" path="res://Cards/Animation/CastAnimationData.gd" id="3_ury46"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="4_kjxy3"]
+[ext_resource type="Script" path="res://Status/Debuffs/Debuff_Weakness.gd" id="5_q3h8f"]
+[ext_resource type="Script" path="res://Entity/Components/Stats/StatModifiers.gd" id="6_pskop"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="7_v3uka"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetingBase.gd" id="8_hcs33"]
+[ext_resource type="Script" path="res://Status/Debuffs/Debuff_Poison.gd" id="9_abwv7"]
+[ext_resource type="Texture2D" uid="uid://03ndp6txwgy0" path="res://Art/Card_art/SneezeEN__FalseIndigo.jpg" id="10_f6vi1"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="11_dxiit"]
+
+[sub_resource type="Resource" id="Resource_gbvk7"]
+script = ExtResource("2_mt3i6")
+offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_72qmm"]
+script = ExtResource("3_ury46")
+cast_animation_scene = ExtResource("1_xahnt")
+cast_position = SubResource("Resource_gbvk7")
+
+[sub_resource type="Resource" id="Resource_0kibf"]
+script = ExtResource("6_pskop")
+permanent_add = 0
+permanent_multiply = 1.0
+temporary_add = -1
+temporary_multiply = 1.0
+
+[sub_resource type="Resource" id="Resource_og3sg"]
+script = ExtResource("5_q3h8f")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 1.0
+status_modifier_base_value = SubResource("Resource_0kibf")
+
+[sub_resource type="Resource" id="Resource_qnxjd"]
+script = ExtResource("4_kjxy3")
+status_to_apply = SubResource("Resource_og3sg")
+
+[sub_resource type="Resource" id="Resource_4d12a"]
+script = ExtResource("8_hcs33")
+
+[sub_resource type="Resource" id="Resource_lc7dn"]
+script = ExtResource("7_v3uka")
+effect = SubResource("Resource_qnxjd")
+value = 0
+targeting_function = SubResource("Resource_4d12a")
+animation_data = SubResource("Resource_72qmm")
+
+[sub_resource type="Resource" id="Resource_cnxli"]
+script = ExtResource("9_abwv7")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 1.0
+
+[sub_resource type="Resource" id="Resource_jvnvb"]
+script = ExtResource("4_kjxy3")
+status_to_apply = SubResource("Resource_cnxli")
+
+[sub_resource type="Resource" id="Resource_a3ihs"]
+script = ExtResource("8_hcs33")
+
+[sub_resource type="Resource" id="Resource_xvns7"]
+script = ExtResource("7_v3uka")
+effect = SubResource("Resource_jvnvb")
+value = 0
+targeting_function = SubResource("Resource_a3ihs")
+
+[sub_resource type="Resource" id="Resource_pwaq2"]
+script = ExtResource("11_dxiit")
+energy_cost = 1
+
+[resource]
+script = ExtResource("1_p7cuv")
+application_type = 1
+card_title = "Sneeze"
+card_key_art = ExtResource("10_f6vi1")
+card_type = 1
+card_description = "Inflict Sapped. Inflict Cursed."
+card_artist_name = "FalseIndigo"
+card_effects_data = Array[ExtResource("7_v3uka")]([SubResource("Resource_lc7dn"), SubResource("Resource_xvns7")])
+energy_info = SubResource("Resource_pwaq2")

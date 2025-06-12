@@ -1,14 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dpjfy4pv0vxst"]
+[gd_scene load_steps=3 format=3 uid="uid://dpjfy4pv0vxst"]
 
 [ext_resource type="Script" path="res://Cards/CardContainer.gd" id="1_8wctf"]
 [ext_resource type="PackedScene" uid="uid://caxbd2ppk3ans" path="res://Cards/Card.tscn" id="2_ytmtr"]
-[ext_resource type="Resource" uid="uid://dxgoopi1roxu4" path="res://Cards/Resource/Card_Damage.tres" id="3_bi3df"]
-[ext_resource type="Resource" uid="uid://0x385c3nuq8f" path="res://Cards/Resource/Card_DamageAllEnemies.tres" id="4_14cb3"]
-[ext_resource type="Resource" uid="uid://boodcfdepyk5i" path="res://Cards/Resource/Card_DamageHealth.tres" id="5_dugjd"]
-[ext_resource type="Resource" uid="uid://d4lugn62mmlep" path="res://Cards/Resource/Card_DrawCards.tres" id="6_56fxe"]
-[ext_resource type="Resource" uid="uid://d12g33rc6c3u5" path="res://Cards/Resource/Card_Heal.tres" id="7_6wjqi"]
-[ext_resource type="Resource" uid="uid://ctx8jsvac84so" path="res://Cards/Resource/Card_Poison.tres" id="8_gbk7f"]
-[ext_resource type="Resource" uid="uid://uv2rili0xf3x" path="res://Cards/Resource/Card_Damage_EVERYTHING.tres" id="9_df5d4"]
 
 [node name="CardContainer" type="Control"]
 layout_mode = 3
@@ -17,4 +10,3 @@ script = ExtResource("1_8wctf")
 card_scene = ExtResource("2_ytmtr")
 total_hand_width = 500.0
 card_queued_offset = 200.0
-default_deck = Array[Resource("res://Cards/CardBase.gd")]([ExtResource("3_bi3df"), ExtResource("4_14cb3"), ExtResource("5_dugjd"), ExtResource("6_56fxe"), ExtResource("7_6wjqi"), ExtResource("8_gbk7f"), ExtResource("9_df5d4")])

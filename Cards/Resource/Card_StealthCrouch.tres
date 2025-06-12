@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=20 format=3 uid="uid://cxym5gojbc7v5"]
+
+[ext_resource type="Script" path="res://Cards/Effects/EffectAddBlock.gd" id="1_3qvp3"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_xot7l"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_cbrdd"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetPlayer.gd" id="3_vd5fh"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="4_k5w22"]
+[ext_resource type="Script" path="res://Status/Debuffs/Debuff_Vulnerability.gd" id="5_3c8vc"]
+[ext_resource type="Script" path="res://Entity/Components/Stats/StatModifiers.gd" id="6_8bb26"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetAllEnemies.gd" id="7_njqb5"]
+[ext_resource type="Texture2D" uid="uid://d3cnn7hymcfty" path="res://Art/Card_art/Stealth__Crouch_Activepaste.png" id="8_gox6p"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="9_ra01k"]
+
+[sub_resource type="Resource" id="Resource_5733r"]
+script = ExtResource("1_3qvp3")
+
+[sub_resource type="Resource" id="Resource_cxdxu"]
+script = ExtResource("3_vd5fh")
+
+[sub_resource type="Resource" id="Resource_i4ltd"]
+script = ExtResource("2_cbrdd")
+effect = SubResource("Resource_5733r")
+value = 5
+targeting_function = SubResource("Resource_cxdxu")
+
+[sub_resource type="Resource" id="Resource_dlse4"]
+script = ExtResource("6_8bb26")
+permanent_add = 0
+permanent_multiply = 1.0
+temporary_add = -1
+temporary_multiply = 1.0
+
+[sub_resource type="Resource" id="Resource_3u2we"]
+script = ExtResource("5_3c8vc")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 1.0
+status_modifier_base_value = SubResource("Resource_dlse4")
+
+[sub_resource type="Resource" id="Resource_y8fun"]
+script = ExtResource("4_k5w22")
+status_to_apply = SubResource("Resource_3u2we")
+
+[sub_resource type="Resource" id="Resource_jpdaa"]
+script = ExtResource("7_njqb5")
+
+[sub_resource type="Resource" id="Resource_11hsa"]
+script = ExtResource("2_cbrdd")
+effect = SubResource("Resource_y8fun")
+value = 0
+targeting_function = SubResource("Resource_jpdaa")
+
+[sub_resource type="Resource" id="Resource_0n1s6"]
+script = ExtResource("9_ra01k")
+energy_cost = 2
+
+[resource]
+script = ExtResource("1_xot7l")
+application_type = 2
+card_title = "Stealth Crouch"
+card_key_art = ExtResource("8_gox6p")
+card_type = 1
+card_description = "Gain 5 Defense. Inflict Distracted on all enemies."
+card_artist_name = "Activepaste"
+card_effects_data = Array[ExtResource("2_cbrdd")]([SubResource("Resource_i4ltd"), SubResource("Resource_11hsa")])
+energy_info = SubResource("Resource_0n1s6")

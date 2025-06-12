@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CardBase" load_steps=13 format=3 uid="uid://dans622owjixj"]
+[gd_resource type="Resource" script_class="CardBase" load_steps=16 format=3 uid="uid://dans622owjixj"]
 
 [ext_resource type="PackedScene" uid="uid://bbseovtwsgegg" path="res://Cards/Animation/Scene/Anim_Slap.tscn" id="1_48p54"]
 [ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_j33rb"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://Cards/Effects/EffectDamage.gd" id="4_vf582"]
 [ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="5_n1vj7"]
 [ext_resource type="Script" path="res://Cards/Targeting/TargetingBase.gd" id="6_e7rmt"]
+[ext_resource type="Texture2D" uid="uid://ut7roqv457x8" path="res://Art/Card_art/Slap__Qworty_Warrior.png" id="7_l4uwj"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="8_f6akw"]
 
 [sub_resource type="Resource" id="Resource_x0fd8"]
 script = ExtResource("2_d7bnp")
@@ -26,13 +28,21 @@ script = ExtResource("6_e7rmt")
 [sub_resource type="Resource" id="Resource_5b3is"]
 script = ExtResource("5_n1vj7")
 effect = SubResource("Resource_hsf7j")
-value = 2
+value = 3
 targeting_function = SubResource("Resource_nkw52")
 animation_data = SubResource("Resource_uhx7l")
+
+[sub_resource type="Resource" id="Resource_kckbn"]
+script = ExtResource("8_f6akw")
+energy_cost = 1
 
 [resource]
 script = ExtResource("1_j33rb")
 application_type = 1
 card_title = "Slap"
-card_description = "Deal 2 damage to target."
+card_key_art = ExtResource("7_l4uwj")
+card_type = 0
+card_description = "Deal 3 damage."
+card_artist_name = "Qworty_Warrior"
 card_effects_data = Array[ExtResource("5_n1vj7")]([SubResource("Resource_5b3is")])
+energy_info = SubResource("Resource_kckbn")

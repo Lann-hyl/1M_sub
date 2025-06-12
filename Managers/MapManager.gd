@@ -248,7 +248,7 @@ func save_map_data() -> void:
 	var save_file: ConfigFile = SaveManager.save_file
 	save_file.set_value("MapManager", "map_width_array", map_width_array)
 	save_file.set_value("MapManager", "current_map", current_map)
-	var error: Error = save_file.save("user://save/save_data.ini")
+	var error: Error = save_file.save(SaveManager.save_file_path)
 	if error:
 		print("Error saving player data: ", error)
 
@@ -292,3 +292,19 @@ func debug_print_event_count() -> void:
 	for k: String in events:
 		print("Event " + k + " has " + str(events[k]) + " rooms (expected: "+ str(float(expected_probabilities[k] * total_nb_rooms/100.0)).pad_decimals(2) +"). (The percentage is " + str(float(events[k]) * 100 / total_nb_rooms).pad_decimals(2) + "%, expected: " + str(expected_probabilities[k]) + "%)")
 	print("Total number of rooms generated: " + str(total_nb_rooms))
+	
+
+## Returns the percent height of the player in the current map
+func get_map_percent_with_player_position() -> float:
+	var player_position: Vector2i = PlayerManager.player_position
+	var number_of_floors: int = map_width_array.size()
+	var player_y_floor: int = player_position.y
+	return (player_y_floor as float / number_of_floors as float) * 100
+
+func is_on_last_floor() -> bool:
+	var number_of_floors: int = map_width_array.size()
+	
+	# Add one since we want to compare the number of floors and player position is zero-index based
+	var player_position_y: int = PlayerManager.player_position.y + 1
+	
+	return number_of_floors == player_position_y

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=8 format=3 uid="uid://b1u8retwosbc0"]
+
+[ext_resource type="Script" path="res://Cards/Effects/EffectAddBlock.gd" id="1_2ga3f"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_f1j0k"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_up8rw"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetPlayer.gd" id="3_hmcm7"]
+
+[sub_resource type="Resource" id="Resource_1hvmi"]
+script = ExtResource("1_2ga3f")
+
+[sub_resource type="Resource" id="Resource_frq70"]
+script = ExtResource("3_hmcm7")
+
+[sub_resource type="Resource" id="Resource_4tqh2"]
+script = ExtResource("2_up8rw")
+effect = SubResource("Resource_1hvmi")
+value = 5
+targeting_function = SubResource("Resource_frq70")
+
+[resource]
+script = ExtResource("1_f1j0k")
+application_type = 0
+card_title = "Get Block"
+card_type = 0
+card_description = "Get 5 Block"
+card_effects_data = Array[ExtResource("2_up8rw")]([SubResource("Resource_4tqh2")])

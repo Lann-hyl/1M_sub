@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8hbst1klk5ng"]
+[gd_scene load_steps=8 format=3 uid="uid://b8hbst1klk5ng"]
 
 [ext_resource type="PackedScene" uid="uid://bam77cwf4emyr" path="res://#Scenes/TopBarOverlay.tscn" id="1_7gwvp"]
 [ext_resource type="Script" path="res://#Scenes/SceneScripts/ShopScene.gd" id="1_u1m6k"]
-[ext_resource type="Script" path="res://#Scenes/Events/skipEventButton.gd" id="2_owx5q"]
+[ext_resource type="PackedScene" uid="uid://cdt4k2reymt2i" path="res://Shop/shop_item_card.tscn" id="4_bbct0"]
+[ext_resource type="Texture2D" uid="uid://c6fmkrnbs4mf6" path="res://Art/Background/0-0.test.CatTree.png" id="6_ppjdl"]
+[ext_resource type="PackedScene" uid="uid://tfeo4epmhse0" path="res://Shop/shop_item_torch.tscn" id="11_3t8vb"]
+[ext_resource type="Script" path="res://#Scenes/SceneScripts/CardRemoval.gd" id="12_1uxnd"]
+[ext_resource type="Texture2D" uid="uid://dd06ocktximw7" path="res://Art/Menus/Trash-1.png" id="12_yofyg"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,32 +17,98 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u1m6k")
 
-[node name="TextEdit" type="TextEdit" parent="."]
-layout_mode = 0
-offset_right = 1276.0
-offset_bottom = 715.0
-theme_override_font_sizes/font_size = 100
-placeholder_text = "This is a placeholder
-shop event"
-
 [node name="TopBarOverlay" parent="." instance=ExtResource("1_7gwvp")]
 layout_mode = 1
 
-[node name="SkipEventButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -280.0
-offset_top = -220.0
-offset_right = -80.0
-offset_bottom = -140.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 26
-text = "Skip this event"
-script = ExtResource("2_owx5q")
+[node name="ShopItems" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[connection signal="pressed" from="SkipEventButton" to="SkipEventButton" method="_on_pressed"]
+[node name="ShopItemTorch" parent="ShopItems" instance=ExtResource("11_3t8vb")]
+offset_left = 835.0
+offset_top = 116.0
+offset_right = 835.0
+offset_bottom = 116.0
+amount = 5
+
+[node name="Card" type="Control" parent="ShopItems"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ShopItemCard" parent="ShopItems/Card" instance=ExtResource("4_bbct0")]
+offset_left = 1111.0
+offset_top = 496.0
+offset_right = 1111.0
+offset_bottom = 496.0
+scale = Vector2(0.5, 0.5)
+
+[node name="ShopItem" parent="ShopItems/Card" instance=ExtResource("4_bbct0")]
+offset_left = 648.0
+offset_top = 476.0
+offset_right = 648.0
+offset_bottom = 476.0
+scale = Vector2(0.5, 0.5)
+
+[node name="ShopItem2" parent="ShopItems/Card" instance=ExtResource("4_bbct0")]
+offset_left = 891.0
+offset_top = 486.0
+offset_right = 891.0
+offset_bottom = 486.0
+scale = Vector2(0.5, 0.5)
+
+[node name="CardRemoval" type="TextureButton" parent="ShopItems"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.00078
+anchor_right = 1.00078
+offset_left = 731.966
+offset_top = 769.0
+offset_right = 791.966
+offset_bottom = 829.0
+scale = Vector2(2.92, 2.92)
+texture_normal = ExtResource("12_yofyg")
+texture_pressed = ExtResource("12_yofyg")
+texture_hover = ExtResource("12_yofyg")
+texture_disabled = ExtResource("12_yofyg")
+texture_focused = ExtResource("12_yofyg")
+stretch_mode = 0
+script = ExtResource("12_1uxnd")
+
+[node name="CardRemoval" type="Control" parent="ShopItems/CardRemoval"]
+anchors_preset = 0
+offset_left = -27.0
+offset_top = -11.0
+offset_right = -27.0
+offset_bottom = -11.0
+
+[node name="ColorRect" type="ColorRect" parent="ShopItems/CardRemoval/CardRemoval"]
+layout_mode = 0
+offset_left = 23.5753
+offset_top = 76.7534
+offset_right = 86.5753
+offset_bottom = 100.753
+
+[node name="Label" type="Label" parent="ShopItems/CardRemoval/CardRemoval/ColorRect"]
+layout_mode = 0
+offset_left = -0.109672
+offset_top = 0.602746
+offset_right = 61.8903
+offset_bottom = 23.6027
+scale = Vector2(0.998719, 1.01696)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackGround" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_left = -53.0
+offset_top = 10.0
+offset_right = 1960.0
+offset_bottom = 1111.0
+mouse_filter = 2
+texture = ExtResource("6_ppjdl")
+expand_mode = 1

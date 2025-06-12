@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://coqwtdslsey32"]
+
+[ext_resource type="Texture2D" uid="uid://rxkwjoukig2y" path="res://icon.svg" id="2_v1h4t"]
+[ext_resource type="Script" path="res://#Scenes/SceneScripts/credits_extra.gd" id="2_xvyvg"]
+
+[sub_resource type="Gradient" id="Gradient_l2aw6"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_62dj5"]
+gradient = SubResource("Gradient_l2aw6")
+
+[sub_resource type="Gradient" id="Gradient_fubce"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8fmwg"]
+gradient = SubResource("Gradient_fubce")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_62dj5")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(960, 305)
+scale = Vector2(0.26123, 0.26123)
+texture = ExtResource("2_v1h4t")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GodotEngine" type="Label" parent="Control"]
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 83.0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 80
+text = "Made using Godot Engine"
+horizontal_alignment = 1
+
+[node name="Addons" type="Label" parent="Control"]
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = 487.0
+offset_right = 1880.0
+offset_bottom = 1000.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 60
+text = "Addons:
+Dialogue System by Nathan Hoad
+Smooth Scroll by SpyrexDE
+
+For more information about licenses and copyrights, see the options
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("GradientTexture2D_8fmwg")
+script = ExtResource("2_xvyvg")

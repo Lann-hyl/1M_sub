@@ -71,7 +71,7 @@ func save_data() -> void:
 	var save_file: ConfigFile = SaveManager.save_file
 	save_file.set_value("XPManager", "current_xp", current_xp)
 	
-	var error: Error = save_file.save("user://save/save_data.ini")
+	var error: Error = save_file.save(SaveManager.save_file_path)
 	if error:
 		print("Error saving player data: ", error)
 

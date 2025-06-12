@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://xwiymm7vlijs"]
+
+[ext_resource type="PackedScene" uid="uid://bpgsmfprnm2kk" path="res://Entity/Enemy/EnemyScene/Enemy.tscn" id="1_5lmv1"]
+[ext_resource type="Texture2D" uid="uid://cw0id8n5qemg8" path="res://Art/Enemies/motorized_bears/motorized_bear_underlings_2-finished.png" id="2_qqj6j"]
+
+[node name="Enemy" instance=ExtResource("1_5lmv1")]
+enemy_name = 35
+
+[node name="HealthComponent" parent="." index="2"]
+max_health = 75
+
+[node name="Sprite2D" parent="." index="3"]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_qqj6j")
+
+[node name="CollisionPolygon2D" parent="Area2D" index="0"]
+polygon = PackedVector2Array(-125, 107, 79, 112, 140, 29, 134, -101, -62, -108, -78, -87, -56, -43, -127, 10)
+
+[node name="HealthLabel" parent="." index="6"]
+offset_left = -37.0
+offset_top = -157.0
+offset_right = 77.0
+offset_bottom = -118.0
+
+[node name="StressLabel" parent="." index="7"]
+offset_left = -37.0
+offset_top = -203.0
+offset_right = 77.0
+offset_bottom = -164.0

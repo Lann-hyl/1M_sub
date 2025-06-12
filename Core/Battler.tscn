@@ -1,11 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcpmrmofcilbn"]
+[gd_scene load_steps=2 format=3 uid="uid://bcpmrmofcilbn"]
 
 [ext_resource type="Script" path="res://Core/Battler.gd" id="1_7pmkk"]
-[ext_resource type="PackedScene" uid="uid://85ove4xi0gf0" path="res://Entity/Enemy/Enemy_SaplingGreen.tscn" id="2_3w4is"]
-[ext_resource type="PackedScene" uid="uid://bxgvbltw03uda" path="res://Entity/Enemy/Enemy_SaplingRed.tscn" id="3_s0fw5"]
 
 [node name="Battler" type="Node2D"]
 position = Vector2(596, 89)
 script = ExtResource("1_7pmkk")
-enemies_to_summon = Array[PackedScene]([ExtResource("2_3w4is"), ExtResource("3_s0fw5")])
-enemy_spacing = 200.0

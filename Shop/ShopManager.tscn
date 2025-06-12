@@ -1,0 +1,17 @@
+[gd_scene load_steps=10 format=3 uid="uid://cunr4wwabqn1u"]
+
+[ext_resource type="Script" path="res://Managers/ShopManager.gd" id="1_rqenh"]
+[ext_resource type="Resource" uid="uid://ckaua56xmrxib" path="res://Cards/Resource/Card_Energy.tres" id="2_bi5vb"]
+[ext_resource type="Resource" uid="uid://bdjkrhy06ijb7" path="res://Cards/Resource/Card_PoisonRandom.tres" id="3_m7u3s"]
+[ext_resource type="Resource" uid="uid://btj36bhn3n2tr" path="res://Cards/Resource/Card_Strength.tres" id="4_0e1wy"]
+[ext_resource type="Resource" uid="uid://b4kmg3lm0e45q" path="res://Cards/Resource/Card_Vulnerability.tres" id="5_hech8"]
+[ext_resource type="Resource" uid="uid://c5fh7bnfh3l4u" path="res://Items/test_relic.tres" id="6_whv6x"]
+[ext_resource type="Resource" uid="uid://cu4gaxrv2jn81" path="res://Items/test_relic_2.tres" id="7_5msik"]
+[ext_resource type="Resource" uid="uid://m8lhbvw2gawd" path="res://Items/test_consumable.tres" id="8_8fhko"]
+[ext_resource type="Resource" uid="uid://qclftsxybsw" path="res://Items/test_consumable_2.tres" id="9_j2l7g"]
+
+[node name="ShopManager" type="Node"]
+script = ExtResource("1_rqenh")
+shop_card_pool = [ExtResource("2_bi5vb"), ExtResource("3_m7u3s"), ExtResource("4_0e1wy"), ExtResource("5_hech8")]
+shop_relic_pool = [ExtResource("6_whv6x"), ExtResource("7_5msik")]
+shop_consumable_pool = [ExtResource("8_8fhko"), ExtResource("9_j2l7g")]

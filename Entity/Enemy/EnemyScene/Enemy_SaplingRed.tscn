@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxgvbltw03uda"]
+
+[ext_resource type="PackedScene" uid="uid://bpgsmfprnm2kk" path="res://Entity/Enemy/EnemyScene/Enemy.tscn" id="1_m4exw"]
+[ext_resource type="Texture2D" uid="uid://bmno324u2v60w" path="res://Art/Enemies/red_sapling-default.png" id="2_jht5f"]
+
+[node name="Enemy" instance=ExtResource("1_m4exw")]
+
+[node name="HealthComponent" parent="." index="2"]
+max_health = 50.0
+
+[node name="Sprite2D" parent="." index="3"]
+texture = ExtResource("2_jht5f")
+
+[node name="StressLabel" parent="." index="7"]
+text = "40/80"
+
+[node name="StressComponent" parent="." index="10"]
+max_stress = 30
+stress_generation = 3

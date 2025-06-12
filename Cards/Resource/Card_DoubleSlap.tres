@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=16 format=3 uid="uid://j12dgeub7ix4"]
+
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_2qui2"]
+[ext_resource type="PackedScene" uid="uid://bbseovtwsgegg" path="res://Cards/Animation/Scene/Anim_Slap.tscn" id="1_gq1r6"]
+[ext_resource type="Script" path="res://Cards/Animation/CastPosition/CastPos_AllTargets.gd" id="2_1g03o"]
+[ext_resource type="Script" path="res://Cards/Animation/CastAnimationData.gd" id="3_ticyv"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectDamage.gd" id="4_3xx6g"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="5_qnpt1"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetingBase.gd" id="6_w8hw4"]
+[ext_resource type="Texture2D" uid="uid://dcshd0d2qnen4" path="res://Art/Card_art/Double_Slap__Makai.png" id="7_el78u"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="8_fucj6"]
+
+[sub_resource type="Resource" id="Resource_ya0yf"]
+script = ExtResource("2_1g03o")
+offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_ryt0f"]
+script = ExtResource("3_ticyv")
+cast_animation_scene = ExtResource("1_gq1r6")
+cast_position = SubResource("Resource_ya0yf")
+
+[sub_resource type="Resource" id="Resource_ag5ca"]
+script = ExtResource("4_3xx6g")
+
+[sub_resource type="Resource" id="Resource_kxgnv"]
+script = ExtResource("6_w8hw4")
+
+[sub_resource type="Resource" id="Resource_glf0q"]
+script = ExtResource("5_qnpt1")
+effect = SubResource("Resource_ag5ca")
+value = 2
+targeting_function = SubResource("Resource_kxgnv")
+animation_data = SubResource("Resource_ryt0f")
+
+[sub_resource type="Resource" id="Resource_u1hnv"]
+script = ExtResource("8_fucj6")
+energy_cost = 1
+
+[resource]
+script = ExtResource("1_2qui2")
+application_type = 1
+card_title = "Double Slap"
+card_key_art = ExtResource("7_el78u")
+card_type = 0
+card_description = "Deal 2 damage twice."
+card_artist_name = "Makai"
+card_effects_data = Array[ExtResource("5_qnpt1")]([SubResource("Resource_glf0q"), SubResource("Resource_glf0q")])
+energy_info = SubResource("Resource_u1hnv")

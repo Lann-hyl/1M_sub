@@ -1,0 +1,65 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=19 format=3 uid="uid://cndn68ie86usa"]
+
+[ext_resource type="Script" path="res://Cards/Effects/EffectSooth.gd" id="1_acs73"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_vss0c"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_xhxk2"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetAllEnemies.gd" id="3_nfccu"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="4_o215l"]
+[ext_resource type="Script" path="res://Status/Debuffs/Debuff_Weakness.gd" id="5_x0twn"]
+[ext_resource type="Script" path="res://Entity/Components/Stats/StatModifiers.gd" id="6_8atrn"]
+[ext_resource type="Texture2D" uid="uid://dbvny3j5euw0" path="res://Art/Card_art/Uuuuu__TheAllSeeingHat.png" id="7_dauda"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="8_de8my"]
+
+[sub_resource type="Resource" id="Resource_t1rho"]
+script = ExtResource("1_acs73")
+
+[sub_resource type="Resource" id="Resource_3v5pb"]
+script = ExtResource("3_nfccu")
+
+[sub_resource type="Resource" id="Resource_u282m"]
+script = ExtResource("2_xhxk2")
+effect = SubResource("Resource_t1rho")
+value = 2
+targeting_function = SubResource("Resource_3v5pb")
+
+[sub_resource type="Resource" id="Resource_krryn"]
+script = ExtResource("6_8atrn")
+permanent_add = 0
+permanent_multiply = 1.0
+temporary_add = -1
+temporary_multiply = 1.0
+
+[sub_resource type="Resource" id="Resource_24hav"]
+script = ExtResource("5_x0twn")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 1.0
+status_modifier_base_value = SubResource("Resource_krryn")
+
+[sub_resource type="Resource" id="Resource_7gq5l"]
+script = ExtResource("4_o215l")
+status_to_apply = SubResource("Resource_24hav")
+
+[sub_resource type="Resource" id="Resource_mqya7"]
+script = ExtResource("3_nfccu")
+
+[sub_resource type="Resource" id="Resource_dn5sb"]
+script = ExtResource("2_xhxk2")
+effect = SubResource("Resource_7gq5l")
+value = 0
+targeting_function = SubResource("Resource_mqya7")
+
+[sub_resource type="Resource" id="Resource_v78ki"]
+script = ExtResource("8_de8my")
+energy_cost = 2
+
+[resource]
+script = ExtResource("1_vss0c")
+application_type = 1
+card_title = "Uuuuu"
+card_key_art = ExtResource("7_dauda")
+card_type = 1
+card_description = "Deal small Soothe and inflict Sapped to all enemies."
+card_artist_name = "TheAllSeeingHat"
+card_effects_data = Array[ExtResource("2_xhxk2")]([SubResource("Resource_u282m"), SubResource("Resource_dn5sb")])
+energy_info = SubResource("Resource_v78ki")

@@ -1,0 +1,66 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=20 format=3 uid="uid://blf5d4vfnmp85"]
+
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_m40ob"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectDamage.gd" id="1_ruf2b"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_mv72q"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetingBase.gd" id="3_m60jm"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="4_avqkg"]
+[ext_resource type="Script" path="res://Status/Debuffs/Debuff_Vulnerability.gd" id="5_clcu6"]
+[ext_resource type="Script" path="res://Entity/Components/Stats/StatModifiers.gd" id="6_gbivk"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetPlayer.gd" id="7_grm1m"]
+[ext_resource type="Texture2D" uid="uid://dmpqbitqwghhd" path="res://Art/Card_art/Headbutt_Attack__akiyamegurine.png" id="8_68bwp"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="9_mwcyy"]
+
+[sub_resource type="Resource" id="Resource_xf8un"]
+script = ExtResource("1_ruf2b")
+
+[sub_resource type="Resource" id="Resource_kwhc6"]
+script = ExtResource("3_m60jm")
+
+[sub_resource type="Resource" id="Resource_mnuih"]
+script = ExtResource("2_mv72q")
+effect = SubResource("Resource_xf8un")
+value = 8
+targeting_function = SubResource("Resource_kwhc6")
+
+[sub_resource type="Resource" id="Resource_5kebh"]
+script = ExtResource("6_gbivk")
+permanent_add = 0
+permanent_multiply = 1.0
+temporary_add = -1
+temporary_multiply = 1.0
+
+[sub_resource type="Resource" id="Resource_xt74f"]
+script = ExtResource("5_clcu6")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 1.0
+status_modifier_base_value = SubResource("Resource_5kebh")
+
+[sub_resource type="Resource" id="Resource_p4mr0"]
+script = ExtResource("4_avqkg")
+status_to_apply = SubResource("Resource_xt74f")
+
+[sub_resource type="Resource" id="Resource_0icud"]
+script = ExtResource("7_grm1m")
+
+[sub_resource type="Resource" id="Resource_5mndy"]
+script = ExtResource("2_mv72q")
+effect = SubResource("Resource_p4mr0")
+value = 0
+targeting_function = SubResource("Resource_0icud")
+
+[sub_resource type="Resource" id="Resource_nqbku"]
+script = ExtResource("9_mwcyy")
+energy_cost = 2
+
+[resource]
+script = ExtResource("1_m40ob")
+application_type = 2
+card_title = "Headbutt Attack"
+card_key_art = ExtResource("8_68bwp")
+card_type = 0
+card_description = "Deal 8 Damage. Gain Distracted."
+card_artist_name = "akiyamegurine"
+card_effects_data = Array[ExtResource("2_mv72q")]([SubResource("Resource_mnuih"), SubResource("Resource_5mndy")])
+energy_info = SubResource("Resource_nqbku")

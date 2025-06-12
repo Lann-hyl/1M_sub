@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://sg1wi7uqvv25"]
+[gd_scene load_steps=16 format=3 uid="uid://sg1wi7uqvv25"]
 
 [ext_resource type="Script" path="res://#Scenes/SceneScripts/TestingScene.gd" id="1_nmgwp"]
 [ext_resource type="PackedScene" uid="uid://bcpmrmofcilbn" path="res://Core/Battler.tscn" id="2_e6pjn"]
@@ -13,17 +13,25 @@
 [ext_resource type="Texture2D" uid="uid://d4muqvs3etnr8" path="res://Art/Card_layout/discard_pile.png" id="12_0nlrw"]
 [ext_resource type="Script" path="res://UI/DiscardPileUISetter.gd" id="13_8nsar"]
 [ext_resource type="PackedScene" uid="uid://bam77cwf4emyr" path="res://#Scenes/TopBarOverlay.tscn" id="14_os5i4"]
+[ext_resource type="Texture2D" uid="uid://by65g3tjujc72" path="res://Art/Background/1-1.png" id="15_5h66l"]
 [ext_resource type="PackedScene" uid="uid://ruwidm3egyrx" path="res://#Scenes/xp_bar.tscn" id="15_r7cr8"]
 
 [node name="TestingScene" type="Node2D"]
 script = ExtResource("1_nmgwp")
 metadata/_edit_vertical_guides_ = [1216.0]
 
+[node name="Background" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("15_5h66l")
+expand_mode = 1
+
 [node name="Battler" parent="." instance=ExtResource("2_e6pjn")]
-position = Vector2(896, 364)
+position = Vector2(893, 231)
 
 [node name="Player" parent="." instance=ExtResource("4_ss8ob")]
-position = Vector2(986, 631)
+position = Vector2(429, 677)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -44,17 +52,21 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -134.0
+offset_top = -280.0
+offset_right = -134.0
+offset_bottom = -280.0
 grow_horizontal = 2
 grow_vertical = 0
-starting_hand_size = 10
-max_hand_width = 900.0
+scale = Vector2(0.65, 0.65)
+max_hand_width = 1000.0
 min_card_separation = 90.0
 max_card_separation = 120.0
-hover_offset_max = 100.0
 max_rotation = 40.0
+max_hand_offset_y = 0.0
 draw_pile_ui = NodePath("../DrawPile")
 discard_pile_ui = NodePath("../DiscardPile")
-play_at_height = 500.0
+play_at_height = 800.0
 
 [node name="EndTurnButton" type="Button" parent="CanvasLayer/UIControl"]
 layout_mode = 1
@@ -171,6 +183,7 @@ main menu"
 
 [node name="TopBarOverlay" parent="CanvasLayer/UIControl" instance=ExtResource("14_os5i4")]
 layout_mode = 1
+offset_bottom = -987.0
 
 [node name="XP progress" parent="CanvasLayer/UIControl" instance=ExtResource("15_r7cr8")]
 layout_mode = 1

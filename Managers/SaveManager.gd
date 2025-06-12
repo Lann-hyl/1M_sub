@@ -1,6 +1,7 @@
 extends Node
 
 var save_file: ConfigFile
+var save_file_path: String = "user://save/save_data.ini"
 
 func _ready() -> void:
 	save_file = ConfigFile.new()
@@ -14,14 +15,15 @@ func execute_save() -> void:
 	InventoryManager.save_inventory()
 	CardManager.save_data()
 	SceneManager.save_scene_data()
+	EnemyManager.save_data()
 
 func clear_data() -> void:
 	DirAccess.remove_absolute("user://save/current_scene.tscn")
-	DirAccess.remove_absolute("user://save/save_data.ini")
+	DirAccess.remove_absolute(SaveManager.save_file_path)
 
 func load_save_file() -> ConfigFile:
-	if FileAccess.file_exists("user://save/save_data.ini"):
-		var error: Error = save_file.load("user://save/save_data.ini")
+	if FileAccess.file_exists(SaveManager.save_file_path):
+		var error: Error = save_file.load(SaveManager.save_file_path)
 		
 		if error:
 			push_error("Error loading save_data ", error)
@@ -32,5 +34,5 @@ func load_save_file() -> ConfigFile:
 		return null
 
 func has_saved_data() -> bool:
-	var save_file: ConfigFile = SaveManager.load_save_file()
-	return save_file != null
+	var save_file_loc: ConfigFile = SaveManager.load_save_file()
+	return save_file_loc != null

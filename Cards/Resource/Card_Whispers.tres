@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=22 format=3 uid="uid://t4pfpsparcir"]
+
+[ext_resource type="PackedScene" uid="uid://c13302ahcfpuy" path="res://Cards/Animation/Scene/Anim_Poison.tscn" id="1_58fef"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_lsll5"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectSooth.gd" id="1_w5qte"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_pp84o"]
+[ext_resource type="Script" path="res://Cards/Animation/CastPosition/CastPos_AllTargets.gd" id="2_xceth"]
+[ext_resource type="Script" path="res://Cards/Animation/CastAnimationData.gd" id="3_ksaqo"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetAllEnemies.gd" id="3_wo44d"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="4_nejbu"]
+[ext_resource type="Script" path="res://Status/Debuffs/Debuff_Poison.gd" id="5_3st5e"]
+[ext_resource type="Texture2D" uid="uid://bqhc00t1xhhet" path="res://Art/Card_art/Whispers__Akami.png" id="7_gdolv"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="10_l2lsb"]
+
+[sub_resource type="Resource" id="Resource_wypo7"]
+script = ExtResource("2_xceth")
+offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_ya76f"]
+script = ExtResource("3_ksaqo")
+cast_animation_scene = ExtResource("1_58fef")
+cast_position = SubResource("Resource_wypo7")
+
+[sub_resource type="Resource" id="Resource_cijt4"]
+script = ExtResource("5_3st5e")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 1.0
+
+[sub_resource type="Resource" id="Resource_sbx7m"]
+script = ExtResource("4_nejbu")
+status_to_apply = SubResource("Resource_cijt4")
+
+[sub_resource type="Resource" id="Resource_4niym"]
+script = ExtResource("3_wo44d")
+
+[sub_resource type="Resource" id="Resource_ajc7k"]
+script = ExtResource("2_pp84o")
+effect = SubResource("Resource_sbx7m")
+value = 0
+targeting_function = SubResource("Resource_4niym")
+animation_data = SubResource("Resource_ya76f")
+
+[sub_resource type="Resource" id="Resource_5xlth"]
+script = ExtResource("1_w5qte")
+
+[sub_resource type="Resource" id="Resource_4t3av"]
+script = ExtResource("3_wo44d")
+
+[sub_resource type="Resource" id="Resource_sepdk"]
+script = ExtResource("2_pp84o")
+effect = SubResource("Resource_5xlth")
+value = 2
+targeting_function = SubResource("Resource_4t3av")
+
+[sub_resource type="Resource" id="Resource_6ulnm"]
+script = ExtResource("10_l2lsb")
+energy_cost = 2
+
+[resource]
+script = ExtResource("1_lsll5")
+application_type = 1
+card_title = "Whispers"
+card_key_art = ExtResource("7_gdolv")
+card_type = 1
+card_description = "Deal 2 Soothe and inflict Cursed to all enemies."
+card_artist_name = "Akami"
+card_effects_data = Array[ExtResource("2_pp84o")]([SubResource("Resource_ajc7k"), SubResource("Resource_sepdk")])
+energy_info = SubResource("Resource_6ulnm")

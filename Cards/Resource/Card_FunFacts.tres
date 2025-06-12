@@ -1,0 +1,56 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=18 format=3 uid="uid://c4u6w1h2m1te0"]
+
+[ext_resource type="PackedScene" uid="uid://c13302ahcfpuy" path="res://Cards/Animation/Scene/Anim_Poison.tscn" id="1_583fc"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_fkgdf"]
+[ext_resource type="Script" path="res://Cards/Animation/CastPosition/CastPos_AllTargets.gd" id="2_io468"]
+[ext_resource type="Script" path="res://Cards/Animation/CastAnimationData.gd" id="3_dtmq1"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="4_xaf0c"]
+[ext_resource type="Script" path="res://Status/Debuffs/Debuff_Poison.gd" id="5_5ba6r"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="6_hn5y5"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetingBase.gd" id="7_hsogo"]
+[ext_resource type="Texture2D" uid="uid://dubre0k4rjull" path="res://Art/Card_art/Fun_Facts__Evan_C.png" id="8_5pmo6"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="9_evfbo"]
+
+[sub_resource type="Resource" id="Resource_umv2e"]
+script = ExtResource("2_io468")
+offset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_85lfw"]
+script = ExtResource("3_dtmq1")
+cast_animation_scene = ExtResource("1_583fc")
+cast_position = SubResource("Resource_umv2e")
+
+[sub_resource type="Resource" id="Resource_vhb02"]
+script = ExtResource("5_5ba6r")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 1.0
+
+[sub_resource type="Resource" id="Resource_3d1jd"]
+script = ExtResource("4_xaf0c")
+status_to_apply = SubResource("Resource_vhb02")
+
+[sub_resource type="Resource" id="Resource_7up7p"]
+script = ExtResource("7_hsogo")
+
+[sub_resource type="Resource" id="Resource_5pkod"]
+script = ExtResource("6_hn5y5")
+effect = SubResource("Resource_3d1jd")
+value = 0
+targeting_function = SubResource("Resource_7up7p")
+animation_data = SubResource("Resource_85lfw")
+
+[sub_resource type="Resource" id="Resource_rt650"]
+script = ExtResource("9_evfbo")
+energy_cost = 0
+
+[resource]
+script = ExtResource("1_fkgdf")
+application_type = 1
+card_title = "\"Fun\" Facts"
+card_key_art = ExtResource("8_5pmo6")
+card_type = 1
+card_description = "Inflict Cursed"
+card_artist_name = "Evan C"
+card_effects_data = Array[ExtResource("6_hn5y5")]([SubResource("Resource_5pkod")])
+energy_info = SubResource("Resource_rt650")

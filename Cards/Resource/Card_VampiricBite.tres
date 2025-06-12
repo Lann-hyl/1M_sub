@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=15 format=3 uid="uid://b85t57jpq5x60"]
+
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_4o3gn"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectDamage.gd" id="1_bnhsa"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="2_ee6rg"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetingBase.gd" id="3_4jxr2"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectHeal.gd" id="4_rnkdv"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetPlayer.gd" id="5_fgqf8"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="6_xc278"]
+
+[sub_resource type="Resource" id="Resource_p1aqd"]
+script = ExtResource("1_bnhsa")
+
+[sub_resource type="Resource" id="Resource_6obh8"]
+script = ExtResource("3_4jxr2")
+
+[sub_resource type="Resource" id="Resource_wll3o"]
+script = ExtResource("2_ee6rg")
+effect = SubResource("Resource_p1aqd")
+value = 2
+targeting_function = SubResource("Resource_6obh8")
+
+[sub_resource type="Resource" id="Resource_iuhw2"]
+script = ExtResource("4_rnkdv")
+
+[sub_resource type="Resource" id="Resource_umacy"]
+script = ExtResource("5_fgqf8")
+
+[sub_resource type="Resource" id="Resource_n3e2u"]
+script = ExtResource("2_ee6rg")
+effect = SubResource("Resource_iuhw2")
+value = 2
+targeting_function = SubResource("Resource_umacy")
+
+[sub_resource type="Resource" id="Resource_hkls5"]
+script = ExtResource("6_xc278")
+energy_cost = 1
+
+[resource]
+script = ExtResource("1_4o3gn")
+application_type = 1
+card_title = "(Vampiric) Bite"
+card_type = 0
+card_description = "Deal 2 Damage and Heal 2."
+card_artist_name = ""
+card_effects_data = Array[ExtResource("2_ee6rg")]([SubResource("Resource_wll3o"), SubResource("Resource_n3e2u")])
+energy_info = SubResource("Resource_hkls5")

@@ -1,0 +1,102 @@
+[gd_scene load_steps=4 format=3 uid="uid://be5a748kcls0f"]
+
+[ext_resource type="Script" path="res://#Scenes/SceneScripts/license.gd" id="1_qwpco"]
+
+[sub_resource type="Gradient" id="Gradient_w1cvb"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_crixh"]
+gradient = SubResource("Gradient_w1cvb")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qwpco")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_crixh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_right = 372.0
+offset_bottom = 121.0
+
+[node name="Godot Engine" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Godot Engine"
+
+[node name="Dialogue Manager" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Dialogue Manager"
+
+[node name="Smooth scroll" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Smooth scroll"
+
+[node name="Free type" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Free type"
+
+[node name="ENet" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "ENet"
+
+[node name="mbed TLS" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "mbed TLS"
+
+[node name="License label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1447.0
+offset_top = -1044.0
+offset_right = -47.0
+offset_bottom = -34.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 30
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam cursus ex at vulputate tincidunt. Praesent convallis augue ac nisi sollicitudin consectetur. Sed consequat consectetur vestibulum. Nulla elementum ex at neque porttitor, ut volutpat est lobortis. Suspendisse eget finibus lacus. Duis est neque, placerat sit amet odio et, placerat vehicula nisl. Praesent eu egestas leo. Maecenas quis sapien ullamcorper, aliquet ex sed, vestibulum libero. Nam in eros finibus, sagittis dui et, laoreet odio. Proin eros neque, ultricies et sagittis in, mattis in arcu. Morbi volutpat orci dui, eget tincidunt libero tempor quis. Quisque at arcu euismod purus blandit vehicula eget vitae mi. Morbi vel vehicula eros. "
+autowrap_mode = 2
+
+[node name="GoBack" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = -241.0
+offset_right = 408.0
+offset_bottom = -19.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 60
+text = "Go back to 
+main menu"
+
+[connection signal="pressed" from="VBoxContainer/Godot Engine" to="." method="_on_godot_engine_pressed"]
+[connection signal="pressed" from="VBoxContainer/Dialogue Manager" to="." method="_on_dialogue_manager_pressed"]
+[connection signal="pressed" from="VBoxContainer/Smooth scroll" to="." method="_on_smooth_scroll_pressed"]
+[connection signal="pressed" from="VBoxContainer/Free type" to="." method="_on_free_type_pressed"]
+[connection signal="pressed" from="VBoxContainer/ENet" to="." method="_on_e_net_pressed"]
+[connection signal="pressed" from="VBoxContainer/mbed TLS" to="." method="_on_mbed_tls_pressed"]
+[connection signal="pressed" from="GoBack" to="." method="_on_go_back_pressed"]

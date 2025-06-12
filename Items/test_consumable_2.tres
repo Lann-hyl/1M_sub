@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Consumable" load_steps=2 format=3 uid="uid://qclftsxybsw"]
+
+[ext_resource type="Script" path="res://Items/Consumable.gd" id="1_5ygqd"]
+
+[resource]
+resource_name = "Amoogus"
+script = ExtResource("1_5ygqd")
+name = "Golden apple"
+description = "But she eated it"
+image_path = "res://Art/Card_art/default_art.png"

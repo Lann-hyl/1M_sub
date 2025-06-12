@@ -1,8 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://lsl3jisfwkv3"]
+[gd_scene load_steps=10 format=3 uid="uid://lsl3jisfwkv3"]
 
-[ext_resource type="Script" path="res://#Scenes/SceneScripts/HealScene.gd" id="1_074vy"]
-[ext_resource type="PackedScene" uid="uid://bam77cwf4emyr" path="res://#Scenes/TopBarOverlay.tscn" id="1_cp1mw"]
-[ext_resource type="Script" path="res://#Scenes/Events/skipEventButton.gd" id="2_1m5v4"]
+[ext_resource type="Texture2D" uid="uid://l2inhsx8dlr5" path="res://Art/Background/0-0.heal_draft.jpg" id="1_61rka"]
+[ext_resource type="Script" path="res://#Scenes/SceneScripts/HealScene.gd" id="1_isnfr"]
+[ext_resource type="PackedScene" uid="uid://dfgne15xrjxj5" path="res://Entity/Player/Player_no_display.tscn" id="2_0yvlf"]
+[ext_resource type="Texture2D" uid="uid://dyl73uovgv6b4" path="res://Art/Menus/button_cat_nap.png" id="2_yaj7y"]
+[ext_resource type="PackedScene" uid="uid://bam77cwf4emyr" path="res://#Scenes/TopBarOverlay.tscn" id="3_bfejb"]
+[ext_resource type="Script" path="res://#Scenes/SceneScripts/HealEventButton.gd" id="3_wdecl"]
+[ext_resource type="Script" path="res://UI/HealthLabel.gd" id="6_7jv0v"]
+
+[sub_resource type="Gradient" id="Gradient_78fca"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_arntt"]
+gradient = SubResource("Gradient_78fca")
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,34 +20,59 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_074vy")
+script = ExtResource("1_isnfr")
 
-[node name="TextEdit" type="TextEdit" parent="."]
-layout_mode = 0
-offset_right = 1276.0
-offset_bottom = 715.0
-theme_override_font_sizes/font_size = 100
-placeholder_text = "This is a placeholder
-heal event"
+[node name="Player_no_display" parent="." instance=ExtResource("2_0yvlf")]
 
-[node name="TopBarOverlay" parent="." instance=ExtResource("1_cp1mw")]
+[node name="BG" type="TextureRect" parent="."]
 layout_mode = 1
-
-[node name="SkipEventButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -280.0
-offset_top = -220.0
-offset_right = -80.0
-offset_bottom = -140.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_font_sizes/font_size = 26
-text = "Skip this event"
-script = ExtResource("2_1m5v4")
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_61rka")
 
-[connection signal="pressed" from="SkipEventButton" to="SkipEventButton" method="_on_pressed"]
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -167.0
+offset_right = 512.0
+offset_bottom = 167.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_yaj7y")
+texture_pressed = ExtResource("2_yaj7y")
+texture_hover = ExtResource("2_yaj7y")
+texture_focused = ExtResource("2_yaj7y")
+script = ExtResource("3_wdecl")
+
+[node name="TopBarOverlay" parent="." instance=ExtResource("3_bfejb")]
+layout_mode = 1
+offset_bottom = -984.0
+
+[node name="HealthLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 59.0
+offset_right = 471.0
+offset_bottom = 255.0
+theme_override_font_sizes/font_size = 120
+text = "100/100"
+script = ExtResource("6_7jv0v")
+
+[node name="BlackOverlay" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_arntt")
+
+[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_pressed"]

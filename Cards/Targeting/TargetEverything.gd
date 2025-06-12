@@ -14,6 +14,6 @@ func _init() -> void:
 ## See [TargetingBase] for more information [br]
 @warning_ignore("unused_parameter")
 func generate_target_list(targeted_entity:Entity) -> Array[Entity]:
-	var targets: Array[Entity] = EnemyManager.enemy_list.duplicate()
+	var targets: Array[Entity] = EnemyManager.current_enemy_group.enemy_list.duplicate()
 	targets.append(PlayerManager.player)
 	return targets

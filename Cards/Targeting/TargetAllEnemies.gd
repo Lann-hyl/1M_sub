@@ -7,12 +7,12 @@ class_name  TargetAllEnemies extends TargetingBase
 ## @Override [br]
 ## See [TargetingBase] for more information [br]
 func _init() -> void:
-    cast_type = GlobalEnums.CardCastType.INSTA_CAST
+	cast_type = GlobalEnums.CardCastType.INSTA_CAST
 
-    
+	
 
 ## @Override [br]
 ## See [TargetingBase] for more information [br]
 @warning_ignore("unused_parameter")
 func generate_target_list(targeted_entity: Entity) -> Array[Entity]:
-    return EnemyManager.enemy_list
+	return EnemyManager.current_enemy_group.enemy_list 

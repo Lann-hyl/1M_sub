@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bk6mqnadig71r"]
+
+[ext_resource type="Texture2D" uid="uid://q8og304npj17" path="res://Art/Menus/Torch-1.png" id="1_4ar2h"]
+
+[node name="Tourch" type="TextureRect"]
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_4ar2h")

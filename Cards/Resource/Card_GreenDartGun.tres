@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="CardBase" load_steps=15 format=3 uid="uid://c4wlhlsg0g2np"]
+
+[ext_resource type="Script" path="res://Cards/Effects/EffectApplyStatus.gd" id="1_3lisd"]
+[ext_resource type="Script" path="res://Cards/CardBase.gd" id="1_xo02k"]
+[ext_resource type="Script" path="res://Status/Debuffs/Debuff_Weakness.gd" id="2_klx3w"]
+[ext_resource type="Script" path="res://Entity/Components/Stats/StatModifiers.gd" id="3_ms4rg"]
+[ext_resource type="Script" path="res://Cards/Effects/EffectData.gd" id="4_k0088"]
+[ext_resource type="Script" path="res://Cards/Targeting/TargetingBase.gd" id="5_7f5l6"]
+[ext_resource type="Texture2D" uid="uid://lbpkjj08hdty" path="res://Art/Card_art/GreenDartGun__Sir_K.png" id="6_ttw57"]
+[ext_resource type="Script" path="res://Cards/EnergyData.gd" id="7_4tvq6"]
+
+[sub_resource type="Resource" id="Resource_it81y"]
+script = ExtResource("3_ms4rg")
+permanent_add = 0
+permanent_multiply = 1.0
+temporary_add = -1
+temporary_multiply = 1.0
+
+[sub_resource type="Resource" id="Resource_ggetb"]
+script = ExtResource("2_klx3w")
+infinite_duration = false
+status_turn_duration = 3
+status_power = 1.0
+status_modifier_base_value = SubResource("Resource_it81y")
+
+[sub_resource type="Resource" id="Resource_57rhx"]
+script = ExtResource("1_3lisd")
+status_to_apply = SubResource("Resource_ggetb")
+
+[sub_resource type="Resource" id="Resource_nsdlk"]
+script = ExtResource("5_7f5l6")
+
+[sub_resource type="Resource" id="Resource_qpq5c"]
+script = ExtResource("4_k0088")
+effect = SubResource("Resource_57rhx")
+value = 0
+targeting_function = SubResource("Resource_nsdlk")
+
+[sub_resource type="Resource" id="Resource_ka81k"]
+script = ExtResource("7_4tvq6")
+energy_cost = 0
+
+[resource]
+script = ExtResource("1_xo02k")
+application_type = 1
+card_title = "Green Dart Gun"
+card_key_art = ExtResource("6_ttw57")
+card_type = 0
+card_description = "Inflict Sapped."
+card_artist_name = "Sir K"
+card_effects_data = Array[ExtResource("4_k0088")]([SubResource("Resource_qpq5c")])
+energy_info = SubResource("Resource_ka81k")

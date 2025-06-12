@@ -15,9 +15,13 @@ var relic_component : InventoryRelicComponent = InventoryRelicComponent.new()
 var inventory_HUD : PackedScene = preload("res://InventoryComponents/InventoryHUD/inventory_hud.tscn")
 var instanced_inventory_HUD : Node
 
+func _ready() -> void:
+	if(DebugVar.DEBUG_START_WITH_A_LOT_OF_GOLD):
+		gold_component.add_gold(999999999)
+
 func instance_inventory_HUD() -> void:
 	instanced_inventory_HUD = inventory_HUD.instantiate()
-	add_child(instanced_inventory_HUD)
+	get_tree().current_scene.add_child(instanced_inventory_HUD)
 
 func close_inventory_HUD() -> void:
 	if(instanced_inventory_HUD == null):
@@ -43,6 +47,10 @@ func subtract_torch() -> void:
 func init_data() -> void:
 	close_inventory_HUD()
 	gold_component = InventoryGoldComponent.new()
+	
+	if(DebugVar.DEBUG_START_WITH_A_LOT_OF_GOLD):
+		gold_component.add_gold(999999999)
+	
 	torch_component = InventoryTorchComponent.new()
 	consumable_component = InventoryConsumablesComponent.new()
 	relic_component = InventoryRelicComponent.new()
@@ -54,7 +62,7 @@ func save_inventory() -> void:
 	save_file.set_value("InventoryManager", "consumable_component", consumable_component)
 	save_file.set_value("InventoryManager", "relic_component", relic_component)
 	
-	var error: Error = save_file.save("user://save/save_data.ini")
+	var error: Error = save_file.save(SaveManager.save_file_path)
 	if error:
 		push_error("Error saving inventory data: ", error)
 

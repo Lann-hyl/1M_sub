@@ -2,6 +2,8 @@ extends Entity
 class_name Enemy
 ## Base enemy class.
 
+@export var enemy_name: GlobalEnums.PossibleEnemies
+
 ## @Override [br]
 ## See [Entity] for more information [br]
 ## Connect the enemy to the [PhaseManager] to make it attack when it's its turn.

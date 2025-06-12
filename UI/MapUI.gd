@@ -32,7 +32,7 @@ var current_player_room: RoomUI
 var light_overlay: LightOverlay
 
 func _input(_inputevent: InputEvent) -> void:
-	if (_inputevent.is_action_pressed("cancel_action")):
+	if (_inputevent.is_action_pressed("cancel_action") and get_parent() != get_tree().root):
 		queue_free()
 
 

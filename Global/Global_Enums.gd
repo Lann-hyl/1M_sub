@@ -101,6 +101,20 @@ enum EventType {
 	Dialogue,
 }
 
+
+enum SaplingType {
+	Sleepy,
+	Cool,
+	Emo,
+	Gamer,
+	Maid,
+	Milf,
+	Nerd,
+	Old,
+	Snow,
+	None,
+}
+
 ## Helper function that returns the Event resource depending on the given EventType
 static func choose_event_from_type(event_type: EventType) -> EventBase:
 	match event_type:
@@ -116,3 +130,79 @@ static func choose_event_from_type(event_type: EventType) -> EventBase:
 			return EventDialogue.new()
 	# A case for an EventType has not been defined, so we arbitrarily return Random
 	return EventRandom.new() 
+
+
+## All the available enemies
+enum PossibleEnemies {
+	billy,
+	cat_5_hurricane,
+	cat_eyes,
+	cubicle_villager,
+	definitely_a_ku100,
+	edgar_allen_poe,
+	emu_ku100,
+	family_friendly_pangolin,
+	faun_club,
+	four_dio,
+	golden_cauldron,
+	green_beans,
+	he_moves_in_a_pentagram,
+	ku10000,
+	matter_baby,
+	mushroomling,
+	overflowing_blender_of_mac_n_cheese,
+	placid_puddle,
+	sapoling,
+	seedlings,
+	slime_in_jar,
+	slime_mold,
+	slimeling,
+	snail,
+	suited_bald_man,
+	suspiciously_cheap_slime,
+	swarm_of_insects,
+	the_slide,
+	the_snake,
+	undefended_soccer_net,
+	wendigo,
+	spiral_of_ants,
+
+	# Mini-boss
+	attack_elephant,
+	clarence_the_worm,
+	fauna_inventory,
+	motorized_bears,
+	not_pickle,
+	one_guy,
+	orange_on_a_table,
+	untuned_kalimba,
+	# Boss
+	asmr_rically_accurate_omni_angel,
+	bethany,
+	nemu,
+	o_beehive,
+	the_berts,
+}
+
+# Enums to each music track
+enum MusicTrack {
+	AREA_ONE,
+	AREA_TWO,
+	AREA_THREE,
+	BOSS,
+	HEAL,
+	SHOP,
+	MAIN_MENU,
+	NO_TRACK
+}
+
+# Enums to each SFX
+enum SoundEffect {
+	UUUUU
+}
+
+enum CardType {
+	ATTACK,
+	SKILL,
+	POWER
+}
